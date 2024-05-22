@@ -64,8 +64,9 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Settings Data Master:</h6>
                         <a class="collapse-item" href="../kriteria/kriteria.php">Kriteria</a>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
+                        <a class="collapse-item" href="../sub-kriteria/sub-kriteria.php">Sub Kriteria</a>
+                        <a class="collapse-item" href="../target/target.php">Nilai Target</a>
+                        <a class="collapse-item" href="../gap/gap.php">Nilai GAP</a>
                     </div>
                 </div>
             </li>
@@ -81,6 +82,11 @@
                 <a class="nav-link" href="siswa.php">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Data Siswa</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../profile-matching/profile-matching.php">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Profile Matching</span></a>
             </li>
 
             <!-- Divider -->

@@ -8,7 +8,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>SPK - Data Siswa</title>
+    <title>SPK - Nilai Target</title>
 
     <!-- Custom fonts for this template-->
     <link href="../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
@@ -63,11 +63,10 @@
                 <div id="master" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Settings Data Master:</h6>
-                        <a class="collapse-item bg-gray-300" href="kriteria.php">Kriteria</a>
+                        <a class="collapse-item" href="../kriteria/kriteria.php">Kriteria</a>
                         <a class="collapse-item" href="../sub-kriteria/sub-kriteria.php">Sub Kriteria</a>
-                        <a class="collapse-item" href="../target/target.php">Nilai Target</a>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
+                        <a class="collapse-item bg-gray-300" href="target.php">Nilai Target</a>
+                        <a class="collapse-item" href="../gap/gap.php">Nilai GAP</a>
                     </div>
                 </div>
             </li>
@@ -239,31 +238,64 @@
                 <div class="container-fluid">
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Data Kriteria</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Data Nilai Target</h1>
                     </div>
 
                     <!-- DataTales Example -->
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-6">
                             <div class="card shadow">
                                 <div class="card-header bg-success">
-                                    <h6 class="m-0 font-weight-bold text-white"><i class="fas fa-plus"></i> Add Kriteria
+                                    <h6 class="m-0 font-weight-bold text-white"><i class="fas fa-plus"></i> Add Nilai
+                                        Target
                                     </h6>
                                 </div>
                                 <div class="card-body">
-                                    <form id="form-kriteria">
+                                    <form id="form-target">
                                         <div class="form-group">
-                                            <label for="kriteria">Kriteria</label>
-                                            <input type="hidden" id="id" name="id">
-                                            <input type="hidden" id="action" name="action">
-                                            <input type="hidden" id="kriteriaLama" name="kriteriaLama">
-                                            <input type="text" class="form-control" id="kriteria" name="kriteria"
-                                                placeholder="Masukkan Kriteria" required>
+                                            <label for="kelas">Kelas</label>
+                                            <input type="hidden" name="action" id="action">
+                                            <input type="hidden" name="id" id="id">
+                                            <select class="form-control" name="kelas" id="kelas">
+                                                <option value="0" selected disabled>Pilih Kelas</option>
+                                                <option value="IPA">IPA</option>
+                                                <option value="IPS">IPS</option>
+                                            </select>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="keterangan">Keterangan</label>
-                                            <textarea name="keterangan" id="keterangan" class="form-control"
-                                                placeholder="Masukkan Keterangan" required></textarea>
+                                        <div class="row">
+                                            <div class="col-8">
+                                                <div class="form-group">
+                                                    <label for="kode">Kode Nilai</label>
+                                                    <select name="kode" id="kode" class="form-control">
+                                                        <option value="0" disabled selected>Pilih Kode Sub Kriteria
+                                                        </option>
+                                                        <?php
+                                                            include '../../config/koneksi.php';
+
+                                                            // Query untuk mengambil kode sub kriteria
+
+                                                            $sql = "SELECT id, kode, sub_kriteria FROM sub_kriteria";
+
+                                                            $query = mysqli_query($konek, $sql);
+
+                                                            while ($data = mysqli_fetch_array($query)) {
+                                                        ?>
+                                                        <option value="<?php echo $data['id'] ?>">
+                                                            <?php echo $data['kode'] ?> -
+                                                            <?php echo $data['sub_kriteria'] ?></option>
+                                                        <?php
+                                                            }
+                                                        ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="form-group">
+                                                    <label for="nilai_target">Nilai Target</label>
+                                                    <input type="number" class="form-control" id="nilai_target"
+                                                        name="nilai_target" placeholder="Ex:1-5" required min="1">
+                                                </div>
+                                            </div>
                                         </div>
                                         <div>
                                             <button type="submit" class="btn btn-primary" id="btnAdd"><i
@@ -274,28 +306,30 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-8">
+                        <div class="col-6">
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Data Kriteria</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Data Sub Kriteria</h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered" id="tblKriteria" width="100%"
+                                        <table class="table table-bordered" id="tbl_target" width="100%"
                                             cellspacing="0">
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
-                                                    <th>Kriteria</th>
-                                                    <th>Keterangan</th>
+                                                    <th>Kelas</th>
+                                                    <th>Kode</th>
+                                                    <th>Nilai Target</th>
                                                     <th>Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tfoot>
                                                 <tr>
                                                     <th>No</th>
-                                                    <th>Kriteria</th>
-                                                    <th>Keterangan</th>
+                                                    <th>Kelas</th>
+                                                    <th>Kode</th>
+                                                    <th>Nilai Target</th>
                                                     <th>Aksi</th>
                                                 </tr>
                                             </tfoot>
@@ -385,22 +419,24 @@
 
         function resetForm() {
             $("#id").val('');
-            $("#kriteria").val('');
-            $("#kriteriaLama").val('');
-            $("#keterangan").val('');
+            $("#kelas").val('');
+            $("[name=kode] option[value='0']").prop("selected", true);
+            $("[name=kelas] option[value='0']").prop("selected", true);
+            $("#nilai_target").val('');
             $("#action").val('');
         }
 
         $(document).ready(function () {
-            tbl_kriteria();
 
-            $("#form-kriteria").on("submit", function (e) {
+            tbl_target();
+
+            $("#form-target").on("submit", function (e) {
                 e.preventDefault();
                 var formData = new FormData(this);
 
                 if ($("#action").val() == "edit") {
                     $.ajax({
-                        url: "update-kriteria.php",
+                        url: "update-target.php",
                         method: "POST",
                         data: formData,
                         processData: false,
@@ -412,10 +448,8 @@
                                     icon: "success",
                                     title: response.message,
                                 });
-                                $("#tblKriteria").DataTable().ajax.reload();
-
+                                $("#tbl_target").DataTable().ajax.reload();
                                 resetForm();
-
                             } else {
                                 // Tampilkan pesan error jika diperlukan
                                 Toast.fire({
@@ -436,19 +470,22 @@
                     });
                 } else {
                     $.ajax({
-                        url: "add-kriteria.php",
+                        url: "add-target.php",
                         method: "POST",
                         data: formData,
                         processData: false,
                         contentType: false,
                         dataType: "json",
                         success: function (response) {
+                            console.log(response.kode);
                             if (response.status == "success") {
                                 Toast.fire({
                                     icon: "success",
                                     title: response.message,
                                 });
-                                $("#tblKriteria").DataTable().ajax.reload();
+
+                                $("#tbl_target").DataTable().ajax.reload();
+
                                 resetForm();
                             } else {
                                 // Tampilkan pesan error jika diperlukan
@@ -476,17 +513,18 @@
             const id = $(this).data("id");
 
             $.ajax({
-                url: "edit-kriteria.php?id=" + id,
+                url: "edit-target.php?id=" + id,
                 data: {
                     id: id,
                 },
                 method: "post",
                 dataType: "json",
                 success: function (data) {
+                    console.log(data.kode);
                     $("#id").val(data.id);
-                    $("#kriteria").val(data.nama_kriteria);
-                    $("#kriteriaLama").val(data.nama_kriteria);
-                    $("#keterangan").val(data.keterangan);
+                    $("#kelas").val(data.kelas);
+                    $("#nilai_target").val(data.nilai_target);
+                    $("#kode").val(data.id);
                     $("#action").val("edit");
                 },
                 error: function (data) {
@@ -498,11 +536,11 @@
         $(document).on("click", "#btn-hapus", function () {
             const id = $(this).data("id");
 
-            var tableSiswa = $("#tblKriteria").DataTable();
+            var tbl_target = $("#tbl_target").DataTable();
 
             Swal.fire({
                 title: "Anda yakin?",
-                text: "Data kriteria akan dihapus!",
+                text: "Data nilai targetakan dihapus!",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
@@ -512,7 +550,7 @@
                 if (result.isConfirmed) {
                     $.ajax({
                         type: "POST",
-                        url: "hapus-kriteria.php?id=" + id,
+                        url: "hapus-target.php?id=" + id,
                         data: {
                             id: id,
                         },
@@ -524,7 +562,8 @@
                                     icon: "success",
                                     title: response.message,
                                 });
-                                tableSiswa.ajax.reload();
+                                tbl_target.ajax.reload();
+                                resetForm().reset();
                             } else {
                                 // Tampilkan pesan error jika diperlukan
                                 Toast.fire({
@@ -540,12 +579,12 @@
 
 
 
-        function tbl_kriteria() {
-            $("#tblKriteria").DataTable({
+        function tbl_target() {
+            $("#tbl_target").DataTable({
                 lengthChange: true,
                 processing: false,
                 ajax: {
-                    url: "list-kriteria.php",
+                    url: "list-target.php",
                 },
                 columns: [{
                         data: null,
@@ -555,12 +594,16 @@
                         },
                     },
                     {
-                        data: "nama_kriteria",
-                        name: "nama_kriteria",
+                        data: "kelas",
+                        name: "kelas",
                     },
                     {
-                        data: "keterangan",
-                        name: "keterangan",
+                        data: "kode",
+                        name: "kode",
+                    },
+                    {
+                        data: "nilai_target",
+                        name: "nilai_target",
                     },
                     {
                         data: "aksi",

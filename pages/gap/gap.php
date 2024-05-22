@@ -8,7 +8,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>SPK - Data Siswa</title>
+    <title>SPK - Nilai GAP</title>
 
     <!-- Custom fonts for this template-->
     <link href="../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
@@ -63,11 +63,10 @@
                 <div id="master" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Settings Data Master:</h6>
-                        <a class="collapse-item bg-gray-300" href="kriteria.php">Kriteria</a>
+                        <a class="collapse-item" href="../kriteria/kriteria.php">Kriteria</a>
                         <a class="collapse-item" href="../sub-kriteria/sub-kriteria.php">Sub Kriteria</a>
                         <a class="collapse-item" href="../target/target.php">Nilai Target</a>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
+                        <a class="collapse-item bg-gray-300" href="gap.php">Nilai GAP</a>
                     </div>
                 </div>
             </li>
@@ -239,7 +238,7 @@
                 <div class="container-fluid">
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Data Kriteria</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Data Nilai GAP</h1>
                     </div>
 
                     <!-- DataTales Example -->
@@ -247,23 +246,25 @@
                         <div class="col-4">
                             <div class="card shadow">
                                 <div class="card-header bg-success">
-                                    <h6 class="m-0 font-weight-bold text-white"><i class="fas fa-plus"></i> Add Kriteria
+                                    <h6 class="m-0 font-weight-bold text-white"><i class="fas fa-plus"></i> Add Nilai
+                                        GAP
                                     </h6>
                                 </div>
                                 <div class="card-body">
-                                    <form id="form-kriteria">
+                                    <form id="form-gap">
                                         <div class="form-group">
-                                            <label for="kriteria">Kriteria</label>
-                                            <input type="hidden" id="id" name="id">
-                                            <input type="hidden" id="action" name="action">
-                                            <input type="hidden" id="kriteriaLama" name="kriteriaLama">
-                                            <input type="text" class="form-control" id="kriteria" name="kriteria"
-                                                placeholder="Masukkan Kriteria" required>
+                                            <label for="gap">Nilai GAP</label>
+                                            <input type="hidden" name="action" id="action">
+                                            <input type="hidden" name="id" id="id">
+                                            <input type="number" class="form-control" name="gap" id="gap" required
+                                                placeholder="Masukkan Nilai" min="-999999999" max="999999999"
+                                                step="0.1">
                                         </div>
                                         <div class="form-group">
-                                            <label for="keterangan">Keterangan</label>
-                                            <textarea name="keterangan" id="keterangan" class="form-control"
-                                                placeholder="Masukkan Keterangan" required></textarea>
+                                            <label for="bobot">Nilai Bobot</label>
+                                            <input type="number" class="form-control" name="bobot" id="bobot" required
+                                                placeholder="Masukkan Nilai" min="-999999999" max="999999999"
+                                                step="0.1">
                                         </div>
                                         <div>
                                             <button type="submit" class="btn btn-primary" id="btnAdd"><i
@@ -277,25 +278,24 @@
                         <div class="col-8">
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Data Kriteria</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Data Nilai GAP</h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered" id="tblKriteria" width="100%"
-                                            cellspacing="0">
+                                        <table class="table table-bordered" id="tbl_gap" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
-                                                    <th>Kriteria</th>
-                                                    <th>Keterangan</th>
+                                                    <th>GAP</th>
+                                                    <th>Nilai Bobot</th>
                                                     <th>Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tfoot>
                                                 <tr>
                                                     <th>No</th>
-                                                    <th>Kriteria</th>
-                                                    <th>Keterangan</th>
+                                                    <th>GAP</th>
+                                                    <th>Nilai Bobot</th>
                                                     <th>Aksi</th>
                                                 </tr>
                                             </tfoot>
@@ -385,22 +385,22 @@
 
         function resetForm() {
             $("#id").val('');
-            $("#kriteria").val('');
-            $("#kriteriaLama").val('');
-            $("#keterangan").val('');
+            $("#gap").val('');
+            $("#bobot").val('');
             $("#action").val('');
         }
 
         $(document).ready(function () {
-            tbl_kriteria();
 
-            $("#form-kriteria").on("submit", function (e) {
+            tbl_gap();
+
+            $("#form-gap").on("submit", function (e) {
                 e.preventDefault();
                 var formData = new FormData(this);
 
                 if ($("#action").val() == "edit") {
                     $.ajax({
-                        url: "update-kriteria.php",
+                        url: "update-gap.php",
                         method: "POST",
                         data: formData,
                         processData: false,
@@ -412,10 +412,8 @@
                                     icon: "success",
                                     title: response.message,
                                 });
-                                $("#tblKriteria").DataTable().ajax.reload();
-
+                                $("#tbl_gap").DataTable().ajax.reload();
                                 resetForm();
-
                             } else {
                                 // Tampilkan pesan error jika diperlukan
                                 Toast.fire({
@@ -436,19 +434,22 @@
                     });
                 } else {
                     $.ajax({
-                        url: "add-kriteria.php",
+                        url: "add-gap.php",
                         method: "POST",
                         data: formData,
                         processData: false,
                         contentType: false,
                         dataType: "json",
                         success: function (response) {
+                            console.log(response.kode);
                             if (response.status == "success") {
                                 Toast.fire({
                                     icon: "success",
                                     title: response.message,
                                 });
-                                $("#tblKriteria").DataTable().ajax.reload();
+
+                                $("#tbl_gap").DataTable().ajax.reload();
+
                                 resetForm();
                             } else {
                                 // Tampilkan pesan error jika diperlukan
@@ -476,17 +477,17 @@
             const id = $(this).data("id");
 
             $.ajax({
-                url: "edit-kriteria.php?id=" + id,
+                url: "edit-gap.php?id=" + id,
                 data: {
                     id: id,
                 },
                 method: "post",
                 dataType: "json",
                 success: function (data) {
+                    console.log(data.kode);
                     $("#id").val(data.id);
-                    $("#kriteria").val(data.nama_kriteria);
-                    $("#kriteriaLama").val(data.nama_kriteria);
-                    $("#keterangan").val(data.keterangan);
+                    $("#gap").val(data.gap);
+                    $("#bobot").val(data.bobot);
                     $("#action").val("edit");
                 },
                 error: function (data) {
@@ -498,11 +499,11 @@
         $(document).on("click", "#btn-hapus", function () {
             const id = $(this).data("id");
 
-            var tableSiswa = $("#tblKriteria").DataTable();
+            var table_gap = $("#tbl_gap").DataTable();
 
             Swal.fire({
                 title: "Anda yakin?",
-                text: "Data kriteria akan dihapus!",
+                text: "Data nilai GAP akan dihapus!",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
@@ -512,7 +513,7 @@
                 if (result.isConfirmed) {
                     $.ajax({
                         type: "POST",
-                        url: "hapus-kriteria.php?id=" + id,
+                        url: "hapus-gap.php?id=" + id,
                         data: {
                             id: id,
                         },
@@ -524,7 +525,8 @@
                                     icon: "success",
                                     title: response.message,
                                 });
-                                tableSiswa.ajax.reload();
+                                table_gap.ajax.reload();
+                                resetForm().reset();
                             } else {
                                 // Tampilkan pesan error jika diperlukan
                                 Toast.fire({
@@ -540,12 +542,12 @@
 
 
 
-        function tbl_kriteria() {
-            $("#tblKriteria").DataTable({
+        function tbl_gap() {
+            $("#tbl_gap").DataTable({
                 lengthChange: true,
                 processing: false,
                 ajax: {
-                    url: "list-kriteria.php",
+                    url: "list-gap.php",
                 },
                 columns: [{
                         data: null,
@@ -555,12 +557,12 @@
                         },
                     },
                     {
-                        data: "nama_kriteria",
-                        name: "nama_kriteria",
+                        data: "gap",
+                        name: "gap",
                     },
                     {
-                        data: "keterangan",
-                        name: "keterangan",
+                        data: "bobot",
+                        name: "bobot",
                     },
                     {
                         data: "aksi",

@@ -8,7 +8,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>SPK - Data Siswa</title>
+    <title>SPK - Sub Kriteria</title>
 
     <!-- Custom fonts for this template-->
     <link href="../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
@@ -63,11 +63,9 @@
                 <div id="master" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Settings Data Master:</h6>
-                        <a class="collapse-item bg-gray-300" href="kriteria.php">Kriteria</a>
-                        <a class="collapse-item" href="../sub-kriteria/sub-kriteria.php">Sub Kriteria</a>
+                        <a class="collapse-item" href="../kriteria/kriteria.php">Kriteria</a>
+                        <a class="collapse-item bg-gray-300" href="sub-kriteria.php">Sub Kriteria</a>
                         <a class="collapse-item" href="../target/target.php">Nilai Target</a>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
                     </div>
                 </div>
             </li>
@@ -84,87 +82,10 @@
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Data Siswa</span></a>
             </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider" />
-
-            <!-- Heading -->
-            <div class="sidebar-heading">Interface</div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Components</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Utilities</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Colors</a>
-                        <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider" />
-
-            <!-- Heading -->
-            <div class="sidebar-heading">Addons</div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="login.html">Login</a>
-                        <a class="collapse-item" href="register.html">Register</a>
-                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item" href="blank.html">Blank Page</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span></a>
-            </li>
-
-            <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Profile Matching</span></a>
             </li>
 
             <!-- Divider -->
@@ -173,17 +94,6 @@
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-            <!-- Sidebar Message -->
-            <div class="sidebar-card d-none d-lg-flex">
-                <img class="sidebar-card-illustration mb-2" src="img/undraw_rocket.svg" alt="..." />
-                <p class="text-center mb-2">
-                    <strong>SB Admin Pro</strong> is packed with premium features,
-                    components, and more!
-                </p>
-                <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to
-                    Pro!</a>
             </div>
         </ul>
         <!-- End of Sidebar -->
@@ -206,8 +116,8 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg" />
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
+                                <img class="img-profile rounded-circle" src="../../img/undraw_profile.svg" />
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -239,7 +149,7 @@
                 <div class="container-fluid">
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Data Kriteria</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Data Sub Kriteria</h1>
                     </div>
 
                     <!-- DataTales Example -->
@@ -247,18 +157,85 @@
                         <div class="col-4">
                             <div class="card shadow">
                                 <div class="card-header bg-success">
-                                    <h6 class="m-0 font-weight-bold text-white"><i class="fas fa-plus"></i> Add Kriteria
+                                    <h6 class="m-0 font-weight-bold text-white"><i class="fas fa-plus"></i> Add Sub
+                                        Kriteria
                                     </h6>
                                 </div>
                                 <div class="card-body">
-                                    <form id="form-kriteria">
+                                    <form id="form-subKriteria">
                                         <div class="form-group">
-                                            <label for="kriteria">Kriteria</label>
+                                            <label for="kriteria_id">Kriteria</label>
+                                            <select class="form-control" name="kriteria_id" id="kriteria_id">
+                                                <option value="0" selected disabled>Pilih Kriteria</option>
+                                                <?php
+                                                    include '../../config/koneksi.php';
+
+                                                    // Query untuk mengambil data siswa
+                                                    $sql = "SELECT * FROM kriteria";
+                                                    $query = mysqli_query($konek, $sql);
+
+                                                    while ($data = mysqli_fetch_array($query)) {
+                                                ?>
+                                                <option value="<?php echo $data['id'] ?>">
+                                                    <?php echo $data['nama_kriteria'] ?></option>
+                                                <?php
+                                                    }
+                                                ?>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="sub_kriteria">Sub Kriteria</label>
                                             <input type="hidden" id="id" name="id">
                                             <input type="hidden" id="action" name="action">
-                                            <input type="hidden" id="kriteriaLama" name="kriteriaLama">
-                                            <input type="text" class="form-control" id="kriteria" name="kriteria"
-                                                placeholder="Masukkan Kriteria" required>
+                                            <input type="hidden" id="sub_kriteria_lama" name="sub_kriteria_lama">
+                                            <input type="text" class="form-control" id="sub_kriteria"
+                                                name="sub_kriteria" placeholder="Masukkan Sub Kriteria" required>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-8">
+                                                <div class="form-group">
+                                                    <label for="factor">Factor</label>
+                                                    <select name="factor" id="factor" class="form-control">
+                                                        <option value="1" selected disabled>Pilhih Factor</option>
+                                                        <option value="NCF">NCF</option>
+                                                        <option value="NSF">NSF</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-4">
+                                                <label for="kode">Kode</label>
+                                                <?php
+                                                    include '../../config/koneksi.php';
+
+                                                    $sql = "SELECT MAX(kode) AS kodeTerbesar FROM sub_kriteria";
+                                                    $query = mysqli_query($konek, $sql);
+                                                    
+                                                    // Inisialisasi urutan dengan nilai awal
+                                                    $urutan = 1;
+
+                                                    if ($query) {
+                                                        $data = mysqli_fetch_array($query);
+                                                        $kodeTerbesar = $data['kodeTerbesar'];
+                                                        
+                                                        // Jika ada data, maka urutan diambil dari kode terbesar
+                                                        if ($kodeTerbesar) {
+                                                            // Mengonversi huruf ke nilai angka dan menambahkan 1
+                                                            // $urutan = ord(substr($kodeTerbesar, 0, 1)) - 64;
+                                                            $urutan = (int) substr($kodeTerbesar, 1, 3);
+                                                            $urutan++;
+
+                                                            $huruf = "C";
+                                                        }
+                                                    }
+                                                    
+                                                    // Mengonversi urutan ke huruf dan format yang diinginkan
+                                                    $kodeBaru = $huruf . sprintf("%01s", $urutan);
+
+                                                    // Menampilkan input dengan nilai kode baru
+                                                ?>
+                                                <input type="text" class="form-control" id="kode" name="kode" readonly
+                                                    value="<?php echo $kodeBaru; ?>">
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="keterangan">Keterangan</label>
@@ -277,16 +254,19 @@
                         <div class="col-8">
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Data Kriteria</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Data Sub Kriteria</h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered" id="tblKriteria" width="100%"
+                                        <table class="table table-bordered" id="tblSubKriteria" width="100%"
                                             cellspacing="0">
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
                                                     <th>Kriteria</th>
+                                                    <th>Sub Kriteria</th>
+                                                    <th>Factor</th>
+                                                    <th>Kode</th>
                                                     <th>Keterangan</th>
                                                     <th>Aksi</th>
                                                 </tr>
@@ -295,6 +275,9 @@
                                                 <tr>
                                                     <th>No</th>
                                                     <th>Kriteria</th>
+                                                    <th>Sub Kriteria</th>
+                                                    <th>Factor</th>
+                                                    <th>Kode</th>
                                                     <th>Keterangan</th>
                                                     <th>Aksi</th>
                                                 </tr>
@@ -314,7 +297,9 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+                        <span>Copyright &copy; - Dibuat dengan
+                            <i class="fas fa-heart text-danger"></i> By Yulia Merry Anjani
+                        </span>
                     </div>
                 </div>
             </footer>
@@ -385,22 +370,25 @@
 
         function resetForm() {
             $("#id").val('');
-            $("#kriteria").val('');
-            $("#kriteriaLama").val('');
+            $("#sub_kriteria").val('');
+            $("#sub_kriteria_lama").val('');
+            $("[name=kriteria_id] option[value='0']").prop("selected", true);
+            $("[name=factor] option[value='1']").prop("selected", true);
             $("#keterangan").val('');
             $("#action").val('');
         }
 
         $(document).ready(function () {
-            tbl_kriteria();
 
-            $("#form-kriteria").on("submit", function (e) {
+            tbl_sub_kriteria();
+
+            $("#form-subKriteria").on("submit", function (e) {
                 e.preventDefault();
                 var formData = new FormData(this);
 
                 if ($("#action").val() == "edit") {
                     $.ajax({
-                        url: "update-kriteria.php",
+                        url: "update-sub-kriteria.php",
                         method: "POST",
                         data: formData,
                         processData: false,
@@ -412,10 +400,9 @@
                                     icon: "success",
                                     title: response.message,
                                 });
-                                $("#tblKriteria").DataTable().ajax.reload();
-
+                                $("#tblSubKriteria").DataTable().ajax.reload();
                                 resetForm();
-
+                                $("#kode").val(response.kode);
                             } else {
                                 // Tampilkan pesan error jika diperlukan
                                 Toast.fire({
@@ -436,20 +423,24 @@
                     });
                 } else {
                     $.ajax({
-                        url: "add-kriteria.php",
+                        url: "add-sub-kriteria.php",
                         method: "POST",
                         data: formData,
                         processData: false,
                         contentType: false,
                         dataType: "json",
                         success: function (response) {
+                            console.log(response.kode);
                             if (response.status == "success") {
                                 Toast.fire({
                                     icon: "success",
                                     title: response.message,
                                 });
-                                $("#tblKriteria").DataTable().ajax.reload();
+
+                                $("#tblSubKriteria").DataTable().ajax.reload();
+
                                 resetForm();
+                                $("#kode").val(response.kode);
                             } else {
                                 // Tampilkan pesan error jika diperlukan
                                 Toast.fire({
@@ -476,7 +467,7 @@
             const id = $(this).data("id");
 
             $.ajax({
-                url: "edit-kriteria.php?id=" + id,
+                url: "edit-sub-kriteria.php?id=" + id,
                 data: {
                     id: id,
                 },
@@ -484,8 +475,11 @@
                 dataType: "json",
                 success: function (data) {
                     $("#id").val(data.id);
-                    $("#kriteria").val(data.nama_kriteria);
-                    $("#kriteriaLama").val(data.nama_kriteria);
+                    $("#kriteria_id").val(data.kriteria_id);
+                    $("#sub_kriteria").val(data.sub_kriteria);
+                    $("#sub_kriteria_lama").val(data.sub_kriteria);
+                    $("#factor").val(data.faktor);
+                    $("#kode").val(data.kode);
                     $("#keterangan").val(data.keterangan);
                     $("#action").val("edit");
                 },
@@ -498,11 +492,11 @@
         $(document).on("click", "#btn-hapus", function () {
             const id = $(this).data("id");
 
-            var tableSiswa = $("#tblKriteria").DataTable();
+            var table_sub_kriteria = $("#tblSubKriteria").DataTable();
 
             Swal.fire({
                 title: "Anda yakin?",
-                text: "Data kriteria akan dihapus!",
+                text: "Data sub kriteria akan dihapus!",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
@@ -512,7 +506,7 @@
                 if (result.isConfirmed) {
                     $.ajax({
                         type: "POST",
-                        url: "hapus-kriteria.php?id=" + id,
+                        url: "hapus-sub-kriteria.php?id=" + id,
                         data: {
                             id: id,
                         },
@@ -524,7 +518,9 @@
                                     icon: "success",
                                     title: response.message,
                                 });
-                                tableSiswa.ajax.reload();
+                                table_sub_kriteria.ajax.reload();
+                                $("#kode").val(response.kode);
+                                resetForm().reset();
                             } else {
                                 // Tampilkan pesan error jika diperlukan
                                 Toast.fire({
@@ -540,12 +536,12 @@
 
 
 
-        function tbl_kriteria() {
-            $("#tblKriteria").DataTable({
+        function tbl_sub_kriteria() {
+            $("#tblSubKriteria").DataTable({
                 lengthChange: true,
                 processing: false,
                 ajax: {
-                    url: "list-kriteria.php",
+                    url: "list-sub-kriteria.php",
                 },
                 columns: [{
                         data: null,
@@ -557,6 +553,18 @@
                     {
                         data: "nama_kriteria",
                         name: "nama_kriteria",
+                    },
+                    {
+                        data: "sub_kriteria",
+                        name: "sub_kriteria",
+                    },
+                    {
+                        data: "faktor",
+                        name: "faktor",
+                    },
+                    {
+                        data: "kode",
+                        name: "kode",
                     },
                     {
                         data: "keterangan",
