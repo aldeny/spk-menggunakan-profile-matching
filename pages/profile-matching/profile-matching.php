@@ -305,6 +305,11 @@
                     <div class="modal-body">
                         <table class="table table-borderless table-responsive" id="table_result">
                             <tr>
+                                <td>NIS</td>
+                                <td>:</td>
+                                <td class="text-capitalize font-weight-bold" id="nis"></td>
+                            </tr>
+                            <tr>
                                 <td>Nama Siswa</td>
                                 <td>:</td>
                                 <td class="text-capitalize font-weight-bold" id="nama_siswa"></td>
@@ -328,7 +333,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" id="btn-lihat">Lihat Detail</button>
+                        <button type="button" class="btn btn-primary" id="btn-lihat" data-id="">Lihat Detail</button>
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">
                             Close
                         </button>
@@ -337,6 +342,81 @@
             </div>
         </div>
         <!-- End of Result Modal -->
+
+        <!-- Detail Proses Profile Matching Modal -->
+        <div class="modal fade" id="detailModal" data-backdrop="static" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-info">
+                        <h5 class="modal-title text-white" id="resultModalLabel">Detail Proses Profile Matching</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table table-borderless table-responsive" id="table_result">
+                            <tr>
+                                <td>NIS</td>
+                                <td>:</td>
+                                <td class="text-capitalize font-weight-bold" id="nis"></td>
+                            </tr>
+                            <tr>
+                                <td>Nama Siswa</td>
+                                <td>:</td>
+                                <td class="text-capitalize font-weight-bold" id="nama_siswa"></td>
+                            </tr>
+                            <tr>
+                                <td>Kelas</td>
+                                <td>:</td>
+                                <td id="kelas"></td>
+                            </tr>
+                            <tr>
+                                <td>Tahun Ajaran</td>
+                                <td>:</td>
+                                <td id="tahun_ajaran"></td>
+                            </tr>
+                        </table>
+
+                        <div class="table-responsive">
+                            <h6>Nilai Siswa</h6>
+                            <table class="table table-bordered" id="table_result" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>PPDB</th>
+                                        <th>IPA</th>
+                                        <th>IPS</th>
+                                        <th>MTK</th>
+                                        <th>B.Indonesia</th>
+                                        <th>Psikotes</th>
+                                        <th>Minat Siswa</th>
+                                        <th>Minat Orang Tua</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td id="nilai_ppdb"></td>
+                                        <td id="nilai_ipa"></td>
+                                        <td id="nilai_ips"></td>
+                                        <td id="nilai_mtk"></td>
+                                        <td id="nilai_bindo"></td>
+                                        <td id="nilai_psikotes"></td>
+                                        <td id="nilai_minat_siswa"></td>
+                                        <td id="nilai_minat_orang_tua"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End of Detail Proses Profile Matching Modal -->
 
         <!-- Logout Modal-->
         <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -403,6 +483,8 @@
             $(document).ready(function () {
                 // tbl_siswa();
 
+                // $("#detailModal").modal('show');
+
                 $("#id_siswa").select2({
                     theme: "bootstrap4",
                 });
@@ -427,13 +509,14 @@
                                 console.log(response.data);
 
                                 $("#resultModal").modal('show');
-                                $("#nama_siswa").html(response.data.students_id);
+                                $("#nis").html(response.data.nis);
+                                $("#nama_siswa").html(response.data.nama_siswa);
+                                $("#kelas").html(response.data.kelas);
+                                $("#tahun_ajaran").html(response.data.tahun_ajaran);
                                 $("#hasil_jurusan").html(response.data.jurusan);
 
-                                // Toast.fire({
-                                //     icon: "success",
-                                //     title: response.message,
-                                // });
+                                $("#btn-lihat").attr("data-id", response.data.id_siswa);
+
                                 $('#loading').hide();
                                 resetForm();
                                 resetFormAndSelect2('#form-profile', '#id_siswa');
@@ -459,6 +542,44 @@
                     });
                 });
             });
+
+            $(document).on("click", "#btn-lihat", function () {
+                const id = $(this).data("id");
+
+                $.ajax({
+                    url: "detail-pmById.php?id=" + id,
+                    data: {
+                        id: id,
+                    },
+                    method: "POST",
+                    dataType: "JSON",
+                    success: function (data) {
+                        console.log(data.ppdb);
+
+                        $("#resultModal").modal("hide");
+                        $("#detailModal").modal("show");
+
+                        $("#nilai_ppdb").html(data.ppdb);
+                        $("#nilai_ipa").html(data.ipa);
+                        $("#nilai_ips").html(data.ips);
+                        $("#nilai_mtk").html(data.mtk);
+                        $("#nilai_bindo").html(data.bindo);
+                        $("#nilai_psikotes").html(data.psikotes);
+                        $("#nilai_minat_siswa").html(data.minat_siswa);
+                        $("#nilai_minat_orang_tua").html(data.minat_ortu);
+
+                    },
+                    error: function (xhr, status, error) {
+                        // Tangani error dan tampilkan pesan kesalahan yang sesuai
+                        var errorMessage = xhr.responseJSON ? xhr.responseJSON.message :
+                            "Terjadi kesalahan saat memproses permintaan.";
+                        Toast.fire({
+                            icon: "error",
+                            title: errorMessage,
+                        });
+                    },
+                })
+            })
 
             $(document).on("click", "#btn-edit", function () {
                 const id = $(this).data("id");
@@ -551,7 +672,6 @@
                     toast.onmouseleave = Swal.resumeTimer;
                 },
             });
-
 
 
             // function tbl_pm() {

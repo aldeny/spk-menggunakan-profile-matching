@@ -322,9 +322,28 @@
                     $jurusan = 'IPS';
                 }
 
+                $save_profile_matching = "INSERT INTO profile_matching (students_id, ncf_akademik_ipa, nsf_akademik_ipa, ncf_nonakademik_ipa, nsf_nonakademik_ipa, n1_ipa, n2_ipa, n_total_ipa, ncf_akademik_ips, nsf_akademik_ips, ncf_nonakademik_ips, nsf_nonakademik_ips, n1_ips, n2_ips, n_total_ips) VALUES ('$id_siswa', '$ncf_akademik_ipa', '$nsf_akademik_ipa', '$ncf_non_akademik_ipa', '$nsf_non_akademik_ipa', '$n1_ipa', '$n2_ipa', '$hasil_ipa', '$ncf_akademik_ips', '$nsf_akademik_ips', '$ncf_non_akademik_ips', '$nsf_non_akademik_ips', '$n1_ips', '$n2_ips', '$hasil_ips')";
+
+                $konek->query($save_profile_matching);
+
+                $get_siswaById = "SELECT * FROM students WHERE id = '$id_siswa'";
+                $result = $konek->query($get_siswaById);
+
+                if ($result->num_rows > 0) {
+                    $row = $result->fetch_assoc();
+                    $nis = $row['nis'];
+                    $nama_siswa = $row['nama_siswa'];
+                    $tahun_ajaran = $row['tahun_ajaran'];
+                    $kelas = $row['kelas'];
+                }
+
                 $data = [
-                    'students_id' => $id_siswa,
-                    'jurusan' => $jurusan
+                    'id_siswa' => $id_siswa,
+                    'nis' => $nis,
+                    'nama_siswa' => $nama_siswa,
+                    'tahun_ajaran' => $tahun_ajaran,
+                    'kelas' => $kelas,
+                    'jurusan' => $jurusan,
                 ];
 
                 //kirim response json
