@@ -88,7 +88,7 @@
           <span>Profile Matching</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="pages/laporan/laporan.php">
           <i class="fas fa-fw fa-chart-bar"></i>
           <span>Laporan Profile Matching</span></a>
       </li>

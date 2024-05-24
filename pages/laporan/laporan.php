@@ -208,320 +208,561 @@
                 <!-- End of Content Wrapper -->
             </div>
             <!-- End of Page Wrapper -->
+        </div>
+    </div>
 
-            <!-- Scroll to Top Button-->
-            <a class="scroll-to-top rounded" href="#page-top">
-                <i class="fas fa-angle-up"></i>
-            </a>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
 
-            <!-- Result Modal -->
-            <div class="modal fade" id="resultModal" data-backdrop="static" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header bg-success">
-                            <h5 class="modal-title text-white" id="resultModalLabel">Hasil Profile Matching</h5>
-                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <table class="table table-borderless table-responsive" id="table_result">
+    <!-- detail Modal -->
+    <div class="modal fade" id="detailModal" data-backdrop="static" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-info">
+                    <h5 class="modal-title text-white" id="detailModalLabel">Proses Profile Matching</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-borderless table-responsive" id="table_detail">
+                        <tr>
+                            <td>NIS</td>
+                            <td>:</td>
+                            <td class="text-capitalize font-weight-bold" id="nis"></td>
+                        </tr>
+                        <tr>
+                            <td>Nama Siswa</td>
+                            <td>:</td>
+                            <td class="text-capitalize font-weight-bold" id="nama_siswa"></td>
+                        </tr>
+                        <tr>
+                            <td>Kelas</td>
+                            <td>:</td>
+                            <td id="kelas"></td>
+                        </tr>
+                        <tr>
+                            <td>Tahun Ajaran</td>
+                            <td>:</td>
+                            <td id="tahun_ajaran"></td>
+                        </tr>
+                    </table>
+
+                    <hr>
+
+                    <div class="table-responsive">
+                        <h6 class="my-2 font-weight-bold text-primary">Nilai Siswa</h6>
+                        <table class="table table-bordered" id="table_result" width="100%" cellspacing="0">
+                            <thead>
                                 <tr>
-                                    <td>Nama Siswa</td>
-                                    <td>:</td>
-                                    <td class="text-capitalize font-weight-bold" id="nama_siswa"></td>
+                                    <th>PPDB</th>
+                                    <th>IPA</th>
+                                    <th>IPS</th>
+                                    <th>MTK</th>
+                                    <th>B.Indonesia</th>
+                                    <th>Psikotes</th>
+                                    <th>Minat Siswa</th>
+                                    <th>Minat Orang Tua</th>
                                 </tr>
+                            </thead>
+                            <tbody>
                                 <tr>
-                                    <td>Kelas</td>
-                                    <td>:</td>
-                                    <td id="kelas"></td>
+                                    <td id="nilai_ppdb"></td>
+                                    <td id="nilai_ipa"></td>
+                                    <td id="nilai_ips"></td>
+                                    <td id="nilai_mtk"></td>
+                                    <td id="nilai_bindo"></td>
+                                    <td id="nilai_psikotes"></td>
+                                    <td id="nilai_minat_siswa"></td>
+                                    <td id="nilai_minat_orang_tua"></td>
                                 </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="table-responsive">
+                        <h6 class="my-2 font-weight-bold text-primary">Nilai Normalisasi</h6>
+                        <table class="table table-bordered" id="table_result" width="100%" cellspacing="0">
+                            <thead>
                                 <tr>
-                                    <td>Tahun Ajaran</td>
-                                    <td>:</td>
-                                    <td id="tahun_ajaran"></td>
+                                    <th>PPDB</th>
+                                    <th>IPA</th>
+                                    <th>IPS</th>
+                                    <th>MTK</th>
+                                    <th>B.Indonesia</th>
+                                    <th>Psikotes</th>
+                                    <th>Minat Siswa</th>
+                                    <th>Minat Orang Tua</th>
                                 </tr>
-                            </table>
-                            <div class="d-flex flex-column justify-content-center p-4">
-                                <h6 class="text-center">Berdasarkan data atau nilai yang telah di inputkan maka hasil
-                                    akhirnya adalah jurusan
-                                </h6>
-                                <h4 class="text-center font-weight-bold py-4" id="hasil_jurusan"></h4>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" id="btn-lihat">Lihat Detail</button>
-                            <button class="btn btn-secondary" type="button" data-dismiss="modal">
-                                Close
-                            </button>
-                        </div>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td id="normalisasi_ppdb"></td>
+                                    <td id="normalisasi_ipa"></td>
+                                    <td id="normalisasi_ips"></td>
+                                    <td id="normalisasi_mtk"></td>
+                                    <td id="normalisasi_bindo"></td>
+                                    <td id="normalisasi_psikotes"></td>
+                                    <td id="normalisasi_minat_siswa"></td>
+                                    <td id="normalisasi_minat_orang_tua"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="table-responsive">
+                        <h6 class="my-2 font-weight-bold text-primary">Perhitungan NCF, NSF dan Nilai Total Jurusan IPA
+                        </h6>
+                        <table class="table table-bordered" id="table_result" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Nama Siswa</th>
+                                    <th>NCF Akademik</th>
+                                    <th>NSF Akademik</th>
+                                    <th>N1</th>
+                                    <th>NCF Non Akademik</th>
+                                    <th>NSF Non Akademik</th>
+                                    <th>N2</th>
+                                    <th>N1 + N2</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td id="siswa_name"></td>
+                                    <td id="ncf_akademik_ipa"></td>
+                                    <td id="nsf_akademik_ipa"></td>
+                                    <td id="n1_ipa"></td>
+                                    <td id="ncf_non_akademik_ipa"></td>
+                                    <td id="nsf_non_akademik_ipa"></td>
+                                    <td id="n2_ipa"></td>
+                                    <td id="n1_plus_n2_ipa"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="table-responsive">
+                        <h6 class="my-2 font-weight-bold text-primary">Perhitungan NCF, NSF dan Nilai Total Jurusan IPS
+                        </h6>
+                        <table class="table table-bordered" id="table_result" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Nama Siswa</th>
+                                    <th>NCF Akademik</th>
+                                    <th>NSF Akademik</th>
+                                    <th>N1</th>
+                                    <th>NCF Non Akademik</th>
+                                    <th>NSF Non Akademik</th>
+                                    <th>N2</th>
+                                    <th>N1 + N2</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td id="siswa_name2"></td>
+                                    <td id="ncf_akademik_ips"></td>
+                                    <td id="nsf_akademik_ips"></td>
+                                    <td id="n1_ips"></td>
+                                    <td id="ncf_non_akademik_ips"></td>
+                                    <td id="nsf_non_akademik_ips"></td>
+                                    <td id="n2_ips"></td>
+                                    <td id="n1_plus_n2_ips"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="table-responsive">
+                        <h6 class="my-2 font-weight-bold text-primary">Hasil Akhir
+                        </h6>
+                        <table class="table table-bordered" id="table_result" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Nilai IPA</th>
+                                    <th>Nilai IPS</th>
+                                    <th>Hasil</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td id="nilai_ipa_akhir"></td>
+                                    <td id="nilai_ips_akhir"></td>
+                                    <td id="kesimpulan"></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-            </div>
-            <!-- End of Result Modal -->
-
-            <!-- Logout Modal-->
-            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            Select "Logout" below if you are ready to end your current session.
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-secondary" type="button" data-dismiss="modal">
-                                Cancel
-                            </button>
-                            <a class="btn btn-primary" href="login.html">Logout</a>
-                        </div>
-                    </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">
+                        Close
+                    </button>
                 </div>
             </div>
+        </div>
+    </div>
+    <!-- End of detail Modal -->
 
-            <!-- Bootstrap core JavaScript-->
-            <script src="../../vendor/jquery/jquery.min.js"></script>
-            <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Select "Logout" below if you are ready to end your current session.
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">
+                        Cancel
+                    </button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of Logout Modal -->
 
-            <!-- Core plugin JavaScript-->
-            <script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="../../vendor/jquery/jquery.min.js"></script>
+    <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-            <!-- Custom scripts for all pages-->
-            <script src="../../js/sb-admin-2.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>
 
-            <!-- Page level plugins -->
-            <script src="../../vendor/datatables/jquery.dataTables.min.js"></script>
-            <script src="../../vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="../../js/sb-admin-2.min.js"></script>
 
-            <!-- sweetalert2 -->
-            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.8/dist/sweetalert2.all.min.js"></script>
+    <!-- Page level plugins -->
+    <script src="../../vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="../../vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-            <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+    <!-- sweetalert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.8/dist/sweetalert2.all.min.js"></script>
 
-            <script>
-                function resetFormAndSelect2(formId, select2Id) {
-                    $(formId)[0].reset(); // Reset semua elemen form
-                    setTimeout(function () {
-                        $(select2Id).val(null).trigger('change'); // Reset nilai Select2
-                    }, 0);
-                }
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 
-                function resetForm() {
-                    $('#ppdb').val('');
-                    $('#ipa').val('');
-                    $('#ips').val('');
-                    $('#mtk').val('');
-                    $('#bindo').val('');
-                    $('#psikotes').val('');
-                    $('#minat').val('');
-                    $('#minat_ortu').val('');
-                }
+    <script>
+        function resetFormAndSelect2(formId, select2Id) {
+            $(formId)[0].reset(); // Reset semua elemen form
+            setTimeout(function () {
+                $(select2Id).val(null).trigger('change'); // Reset nilai Select2
+            }, 0);
+        }
 
-                $(document).ready(function () {
-                    // tbl_siswa();
+        function resetForm() {
+            $('#ppdb').val('');
+            $('#ipa').val('');
+            $('#ips').val('');
+            $('#mtk').val('');
+            $('#bindo').val('');
+            $('#psikotes').val('');
+            $('#minat').val('');
+            $('#minat_ortu').val('');
+        }
 
-                    $("#id_siswa").select2({
-                        theme: "bootstrap4",
-                    });
+        $(document).ready(function () {
 
-                    $("#form-profile").on("submit", function (e) {
-                        e.preventDefault();
+            tbl_result();
 
-                        var formData = new FormData(this);
+            $("#id_siswa").select2({
+                theme: "bootstrap4",
+            });
 
-                        $('#loading').show();
+            $("#form-profile").on("submit", function (e) {
+                e.preventDefault();
 
-                        $.ajax({
-                            url: "add-pm.php",
-                            method: "POST",
-                            data: formData,
-                            processData: false,
-                            contentType: false,
-                            dataType: "json",
-                            success: function (response) {
-                                if (response.status == "success") {
+                var formData = new FormData(this);
 
-                                    console.log(response.data);
+                $('#loading').show();
 
-                                    $("#resultModal").modal('show');
-                                    $("#nama_siswa").html(response.data.students_id);
-                                    $("#hasil_jurusan").html(response.data.jurusan);
+                $.ajax({
+                    url: "add-pm.php",
+                    method: "POST",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    dataType: "json",
+                    success: function (response) {
+                        if (response.status == "success") {
 
-                                    // Toast.fire({
-                                    //     icon: "success",
-                                    //     title: response.message,
-                                    // });
-                                    $('#loading').hide();
-                                    resetForm();
-                                    resetFormAndSelect2('#form-profile', '#id_siswa');
-                                } else {
-                                    $('#loading').hide();
-                                    Toast.fire({
-                                        icon: "error",
-                                        title: response.message,
-                                    });
-                                }
-                            },
-                            error: function (xhr, status, error) {
-                                var errorMessage = xhr.responseJSON ? xhr.responseJSON
-                                    .message :
-                                    "Terjadi kesalahan saat memproses permintaan.";
-                                $('#loading').hide();
+                            console.log(response.data);
 
-                                Toast.fire({
-                                    icon: "error",
-                                    title: errorMessage,
-                                });
+                            $("#resultModal").modal('show');
+                            $("#nama_siswa").html(response.data.students_id);
+                            $("#hasil_jurusan").html(response.data.jurusan);
 
-                            },
+                            // Toast.fire({
+                            //     icon: "success",
+                            //     title: response.message,
+                            // });
+                            $('#loading').hide();
+                            resetForm();
+                            resetFormAndSelect2('#form-profile', '#id_siswa');
+                        } else {
+                            $('#loading').hide();
+                            Toast.fire({
+                                icon: "error",
+                                title: response.message,
+                            });
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        var errorMessage = xhr.responseJSON ? xhr.responseJSON
+                            .message :
+                            "Terjadi kesalahan saat memproses permintaan.";
+                        $('#loading').hide();
+
+                        Toast.fire({
+                            icon: "error",
+                            title: errorMessage,
                         });
-                    });
+
+                    },
                 });
+            });
+        });
 
-                $(document).on("click", "#btn-edit", function () {
-                    const id = $(this).data("id");
+        $(document).on("click", "#btn-detail", function () {
 
+            const id = $(this).data("id");
+
+            $.ajax({
+                url: "../profile-matching/detail-pmById.php?id=" + id,
+                data: {
+                    id: id,
+                },
+                method: "POST",
+                dataType: "JSON",
+                success: function (data) {
+
+                    $("#detailModal").modal("show");
+
+                    $("#nis").html(data.nis);
+                    $("#nama_siswa").html(data.nama_siswa);
+                    $("#kelas").html(data.kelas);
+                    $("#tahun_ajaran").html(data.tahun_ajaran);
+
+                    $("#nilai_ppdb").html(data.ppdb);
+                    $("#nilai_ipa").html(data.ipa);
+                    $("#nilai_ips").html(data.ips);
+                    $("#nilai_mtk").html(data.mtk);
+                    $("#nilai_bindo").html(data.bindo);
+
+                    if (data.psikotes == 5) {
+                        $("#nilai_psikotes").html("IPA");
+                    } else if (data.psikotes == 4) {
+                        $("#nilai_psikotes").html("IPA/IPS");
+                    } else if (data.psikotes == 3) {
+                        $("#nilai_psikotes").html("IPS/IPA");
+                    } else if (data.psikotes == 2) {
+                        $("#nilai_psikotes").html("IPS");
+                    }
+
+                    if (data.minat_siswa == 5) {
+                        $("#nilai_minat_siswa").html("IPA");
+                    } else {
+                        $("#nilai_minat_siswa").html("IPS");
+                    }
+
+                    if (data.minat_ortu == 5) {
+                        $("#nilai_minat_orang_tua").html("IPA");
+                    } else if (data.minat_ortu == 2) {
+                        $("#nilai_minat_orang_tua").html("IPS");
+                    } else {
+                        $("#nilai_minat_orang_tua").html("TRS");
+                    }
+
+                    $("#normalisasi_ppdb").html(data.nilai_ppdb);
+                    $("#normalisasi_ipa").html(data.nilai_ipa);
+                    $("#normalisasi_ips").html(data.nilai_ips);
+                    $("#normalisasi_mtk").html(data.nilai_mtk);
+                    $("#normalisasi_bindo").html(data.nilai_bindo);
+                    $("#normalisasi_psikotes").html(data.nilai_psikotes);
+                    $("#normalisasi_minat_siswa").html(data.nilai_minat_siswa);
+                    $("#normalisasi_minat_orang_tua").html(data.nilai_minat_ortu);
+
+                    $("#ncf_akademik_ipa").html(data.ncf_akademik_ipa);
+                    $("#nsf_akademik_ipa").html(data.nsf_akademik_ipa);
+                    $("#n1_ipa").html(data.n1_ipa);
+                    $("#ncf_non_akademik_ipa").html(data.ncf_nonakademik_ipa);
+                    $("#nsf_non_akademik_ipa").html(data.nsf_nonakademik_ipa);
+                    $("#n2_ipa").html(data.n2_ipa);
+                    $("#n1_plus_n2_ipa").html(data.n_total_ipa);
+
+                    $("#ncf_akademik_ips").html(data.ncf_akademik_ips);
+                    $("#nsf_akademik_ips").html(data.nsf_akademik_ips);
+                    $("#n1_ips").html(data.n1_ips);
+                    $("#ncf_non_akademik_ips").html(data.ncf_nonakademik_ips);
+                    $("#nsf_non_akademik_ips").html(data.nsf_nonakademik_ips);
+                    $("#n2_ips").html(data.n2_ips);
+                    $("#n1_plus_n2_ips").html(data.n_total_ips);
+
+                    $("#nilai_ipa_akhir").html(data.n_total_ipa);
+                    $("#nilai_ips_akhir").html(data.n_total_ips);
+
+                    if (data.n_total_ipa > data.n_total_ips) {
+                        $("#kesimpulan").html("IPA");
+                    } else {
+                        $("#kesimpulan").html("IPS");
+                    }
+
+
+                },
+                error: function (xhr, status, error) {
+                    // Tangani error dan tampilkan pesan kesalahan yang sesuai
+                    var errorMessage = xhr.responseJSON ? xhr.responseJSON.message :
+                        "Terjadi kesalahan saat memproses permintaan.";
+                    Toast.fire({
+                        icon: "error",
+                        title: errorMessage,
+                    });
+                },
+            })
+        })
+
+        $(document).on("click", "#btn-edit", function () {
+            const id = $(this).data("id");
+
+            $.ajax({
+                url: "edit-siswa.php?id=" + id,
+                data: {
+                    id: id,
+                },
+                method: "post",
+                dataType: "json",
+                success: function (data) {
+                    $("#siswaModal").modal("show");
+                    $("#ModalLabel").html("Edit Data Siswa");
+                    $(".modal-header").addClass("bg-info");
+                    $(".btn-submit").html("Update");
+                    $("#id").val(data.id);
+                    $("#nis").val(data.nis);
+                    $("#nama_siswa").val(data.nama_siswa);
+                    $('[name="kelas"] option[value="' + data.kelas + '"]').prop(
+                        "selected",
+                        true
+                    );
+                    $(
+                        '[name="jenis_kelamin"] option[value="' + data.jenis_kelamin +
+                        '"]'
+                    ).prop("selected", true);
+                    $('[name="tahun_ajaran"] option[value="' + data.tahun_ajaran + '"]')
+                        .prop(
+                            "selected",
+                            true
+                        );
+                    $("#action").val("edit");
+                },
+                error: function (data) {
+                    alert("Error");
+                },
+            });
+        });
+
+        $(document).on("click", "#btn-hapus", function () {
+            const id = $(this).data("id");
+
+            var tablePM = $("#table_result").DataTable();
+
+            Swal.fire({
+                title: "Anda yakin?",
+                text: "Data profile matching akan dihapus!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Ya, hapus!",
+            }).then((result) => {
+                if (result.isConfirmed) {
                     $.ajax({
-                        url: "edit-siswa.php?id=" + id,
+                        type: "POST",
+                        url: "hapus-laporan-pm.php?id=" + id,
                         data: {
                             id: id,
                         },
-                        method: "post",
                         dataType: "json",
-                        success: function (data) {
-                            $("#siswaModal").modal("show");
-                            $("#ModalLabel").html("Edit Data Siswa");
-                            $(".modal-header").addClass("bg-info");
-                            $(".btn-submit").html("Update");
-                            $("#id").val(data.id);
-                            $("#nis").val(data.nis);
-                            $("#nama_siswa").val(data.nama_siswa);
-                            $('[name="kelas"] option[value="' + data.kelas + '"]').prop(
-                                "selected",
-                                true
-                            );
-                            $(
-                                '[name="jenis_kelamin"] option[value="' + data.jenis_kelamin +
-                                '"]'
-                            ).prop("selected", true);
-                            $('[name="tahun_ajaran"] option[value="' + data.tahun_ajaran + '"]')
-                                .prop(
-                                    "selected",
-                                    true
-                                );
-                            $("#action").val("edit");
-                        },
-                        error: function (data) {
-                            alert("Error");
+                        success: function (response) {
+                            if (response.status == "success") {
+                                // Tampilkan pesan sukses atau lakukan tindakan lainnya
+                                Toast.fire({
+                                    icon: "success",
+                                    title: "Data profile matching berhasil dihapus",
+                                });
+                                tablePM.ajax.reload();
+                            } else {
+                                // Tampilkan pesan error jika diperlukan
+                                Toast.fire({
+                                    icon: "error",
+                                    title: "Data profile matching gagal dihapus",
+                                });
+                            }
                         },
                     });
-                });
+                }
+            });
+        });
 
-                $(document).on("click", "#btn-hapus", function () {
-                    const id = $(this).data("id");
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            },
+        });
 
-                    var tableSiswa = $("#tblSiswa").DataTable();
 
-                    Swal.fire({
-                        title: "Anda yakin?",
-                        text: "Data siswa akan dihapus!",
-                        icon: "warning",
-                        showCancelButton: true,
-                        confirmButtonColor: "#3085d6",
-                        cancelButtonColor: "#d33",
-                        confirmButtonText: "Ya, hapus!",
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            $.ajax({
-                                type: "POST",
-                                url: "hapus-siswa.php?id=" + id,
-                                data: {
-                                    id: id,
-                                },
-                                dataType: "json",
-                                success: function (response) {
-                                    if (response.success) {
-                                        // Tampilkan pesan sukses atau lakukan tindakan lainnya
-                                        Toast.fire({
-                                            icon: "success",
-                                            title: "Data siswa berhasil dihapus",
-                                        });
-                                        tableSiswa.ajax.reload();
-                                    } else {
-                                        // Tampilkan pesan error jika diperlukan
-                                        Toast.fire({
-                                            icon: "error",
-                                            title: "Data siswa gagal dihapus",
-                                        });
-                                    }
-                                },
-                            });
-                        }
-                    });
-                });
 
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.onmouseenter = Swal.stopTimer;
-                        toast.onmouseleave = Swal.resumeTimer;
+        function tbl_result() {
+            $("#table_result").DataTable({
+                lengthChange: true,
+                processing: true,
+                ajax: {
+                    url: "list-siswa-jurusan.php",
+                },
+                columns: [{
+                        data: null,
+                        sortable: false,
+                        render: function (data, type, row, meta) {
+                            return meta.row + meta.settings._iDisplayStart + 1;
+                        },
                     },
-                });
-
-
-
-                // function tbl_pm() {
-                //     $("#tbl_pm").DataTable({
-                //         lengthChange: true,
-                //         processing: true,
-                //         ajax: {
-                //             url: "list-siswa.php",
-                //         },
-                //         columns: [{
-                //                 data: null,
-                //                 sortable: false,
-                //                 render: function (data, type, row, meta) {
-                //                     return meta.row + meta.settings._iDisplayStart + 1;
-                //                 },
-                //             },
-                //             {
-                //                 data: "nis",
-                //                 name: "nis",
-                //             },
-                //             {
-                //                 data: "nama_siswa",
-                //                 name: "nama_siswa",
-                //             },
-                //             {
-                //                 data: "jenis_kelamin",
-                //                 name: "jenis_kelamin",
-                //             },
-                //             {
-                //                 data: "kelas",
-                //                 name: "kelas",
-                //             },
-                //             {
-                //                 data: "tahun_ajaran",
-                //                 name: "tahun_ajaran",
-                //             },
-                //             {
-                //                 data: "aksi",
-                //                 name: "aksi",
-                //             },
-                //         ],
-                //     });
-                // }
-            </script>
+                    {
+                        data: "nis",
+                        name: "nis",
+                    },
+                    {
+                        data: "nama_siswa",
+                        name: "nama_siswa",
+                    },
+                    {
+                        data: "tahun_ajaran",
+                        name: "tahun_ajaran",
+                    },
+                    {
+                        data: "jurusan",
+                        name: "jurusan",
+                    },
+                    {
+                        data: "aksi",
+                        name: "aksi",
+                    },
+                ],
+            });
+        }
+    </script>
 </body>
 
 </html>
