@@ -49,7 +49,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="../../index.php">
+                <a class="nav-link" href="../dashboard.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -73,7 +73,7 @@
                         <a class="collapse-item" href="../kriteria/kriteria.php">Kriteria</a>
                         <a class="collapse-item" href="../sub-kriteria/sub-kriteria.php">Sub Kriteria</a>
                         <a class="collapse-item" href="../target/target.php">Nilai Target</a>
-                        <a class="collapse-item" href="../gap/gap.php">Nilai GAP</a>
+                        <!-- <a class="collapse-item" href="../gap/gap.php">Nilai GAP</a> -->
                     </div>
                 </div>
             </li>
@@ -90,12 +90,12 @@
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Data Siswa</span></a>
             </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="profile-matching.php">
+            <li class="nav-item ">
+                <a class="nav-link" href="../profile-matching/profile-matching.php">
                     <i class="fas fa-fw fa-certificate"></i>
                     <span>Profile Matching</span></a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="#">
                     <i class="fas fa-fw fa-chart-bar"></i>
                     <span>Laporan Profile Matching</span></a>

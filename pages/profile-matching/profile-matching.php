@@ -73,7 +73,7 @@
                         <a class="collapse-item" href="../kriteria/kriteria.php">Kriteria</a>
                         <a class="collapse-item" href="../sub-kriteria/sub-kriteria.php">Sub Kriteria</a>
                         <a class="collapse-item" href="../target/target.php">Nilai Target</a>
-                        <a class="collapse-item" href="../gap/gap.php">Nilai GAP</a>
+                        <!-- <a class="collapse-item" href="../gap/gap.php">Nilai GAP</a> -->
                     </div>
                 </div>
             </li>

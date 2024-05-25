@@ -1,3 +1,13 @@
+<?php
+    session_start();
+
+    // Check if user is not logged in, redirect to login page
+    if (!isset($_SESSION['username'])) {
+        header("Location: ../index.php");
+        exit();
+    }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,16 +21,16 @@
     <title>SPK - Dashboard</title>
 
     <!-- Custom fonts for this template-->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet" />
 
     <!-- Custom styles for this template-->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet" />
+    <link href="../css/sb-admin-2.min.css" rel="stylesheet" />
 
     <!-- Custom styles for this page -->
-    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
 
     <!-- SweetAlert2 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.8/dist/sweetalert2.min.css">
@@ -41,7 +51,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="dashboard.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -62,13 +72,11 @@
                 <div id="master" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Settings Data Master:</h6>
-                        <a class="collapse-item" href="pages/kriteria/kriteria.php">Kriteria</a>
-                        <a class="collapse-item" href="pages/sub-kriteria/sub-kriteria.php">Sub Kriteria</a>
-                        <a class="collapse-item" href="pages/target/target.php">Nilai Target</a>
-                        <a class="collapse-item" href="pages/gap/gap.php">Nilai GAP</a>
+                        <a class="collapse-item" href="kriteria/kriteria.php">Kriteria</a>
+                        <a class="collapse-item" href="sub-kriteria/sub-kriteria.php">Sub Kriteria</a>
+                        <a class="collapse-item" href="target/target.php">Nilai Target</a>
+                        <!-- <a class="collapse-item" href="pages/gap/gap.php">Nilai GAP</a> -->
                         <!-- <a class="collapse-item" href="pages/skala/skala.php">Nilai Skala</a> -->
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
                     </div>
                 </div>
             </li>
@@ -81,14 +89,19 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="pages/siswa/siswa.php">
+                <a class="nav-link" href="siswa/siswa.php">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Data Siswa</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="pages/siswa/siswa.php">
-                    <i class="fas fa-fw fa-chart-area"></i>
+                <a class="nav-link" href="profile-matching/profile-matching.php">
+                    <i class="fas fa-fw fa-certificate"></i>
                     <span>Profile Matching</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="laporan/laporan.php">
+                    <i class="fas fa-fw fa-chart-bar"></i>
+                    <span>Laporan Profile Matching</span></a>
             </li>
 
             <!-- Divider -->
@@ -119,8 +132,9 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
-                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg" />
+                                <span
+                                    class="mr-2 d-none d-lg-inline text-gray-600 small text-capitalize"><?php echo $_SESSION['username']; ?></span>
+                                <img class="img-profile rounded-circle" src="../img/undraw_profile.svg" />
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -155,6 +169,17 @@
                         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
                     </div>
 
+                    <?php
+                    include '../config/koneksi.php';
+
+                    $sql = "SELECT * FROM students";
+
+                    $result = mysqli_query($konek, $sql);
+
+                    $total = mysqli_num_rows($result);
+                    
+                    ?>
+
                     <!-- Content Row -->
                     <div class="row">
                         <!-- Earnings (Monthly) Card Example -->
@@ -167,7 +192,7 @@
                                                 Total Siswa Terdaftar
                                             </div>
                                             <div class="h5 mb-4 font-weight-bold text-gray-800">
-                                                10
+                                                <?php echo $total ?>
                                             </div>
                                             <a href="#" class="btn btn-sm btn-primary">Cek Detail</a>
                                         </div>
@@ -179,6 +204,22 @@
                             </div>
                         </div>
 
+                        <?php 
+                            include '../config/koneksi.php';
+
+                            $sql = "SELECT 
+                                        COUNT(*) AS jumlah_ipa
+                                    FROM 
+                                        `profile_matching` AS pm
+                                    WHERE 
+                                        pm.n_total_ipa > pm.n_total_ips;
+                                    ";
+
+                            $result = mysqli_query($konek, $sql);
+
+                            $total = mysqli_fetch_assoc($result);
+                        ?>
+
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-success shadow h-100 py-2">
@@ -189,7 +230,7 @@
                                                 Total Siswa IPA
                                             </div>
                                             <div class="h5 mb-4 font-weight-bold text-gray-800">
-                                                7
+                                                <?php echo $total['jumlah_ipa'] ?>
                                             </div>
                                             <a href="#" class="btn btn-sm btn-success">Cek Detail</a>
                                         </div>
@@ -201,6 +242,22 @@
                             </div>
                         </div>
 
+                        <?php 
+                            include '../config/koneksi.php';
+
+                            $sql = "SELECT 
+                                        COUNT(*) AS jumlah_ips
+                                    FROM 
+                                        `profile_matching` AS pm
+                                    WHERE 
+                                        pm.n_total_ipa < pm.n_total_ips;
+                                    ";
+
+                            $result = mysqli_query($konek, $sql);
+
+                            $total = mysqli_fetch_assoc($result);
+                        ?>
+
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-info shadow h-100 py-2">
@@ -208,10 +265,10 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                Total Siswa IPA
+                                                Total Siswa IPS
                                             </div>
                                             <div class="h5 mb-4 font-weight-bold text-gray-800">
-                                                3
+                                                <?php echo $total['jumlah_ips'] ?>
                                             </div>
                                             <a href="#" class="btn btn-sm btn-info">Cek Detail</a>
                                         </div>
@@ -230,92 +287,25 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="tbl_aspek" width="100%" cellspacing="0">
+                                <table class="table table-bordered" id="tbl_pm_siswa" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
                                             <th>No</th>
+                                            <th>NIS</th>
                                             <th>Nama Siswa</th>
+                                            <th>Tahun Ajaran</th>
                                             <th>Nilai IPA</th>
                                             <th>Nilai IPS</th>
                                             <th>Hasil</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>M Sulthan Athallah K</td>
-                                            <td>7.30</td>
-                                            <td>7.10</td>
-                                            <td>IPA</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Rifqy Ismail An Naufal</td>
-                                            <td>8.40</td>
-                                            <td>8.10</td>
-                                            <td>IPA</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Rohiqul Anwar</td>
-                                            <td>8.15</td>
-                                            <td>7.55</td>
-                                            <td>IPA</td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>Dwi Aisyiyah Putri</td>
-                                            <td>8.35</td>
-                                            <td>8.25</td>
-                                            <td>IPA</td>
-                                        </tr>
-                                        <tr>
-                                            <td>5</td>
-                                            <td>Rahmanisa Arifin</td>
-                                            <td>8.50</td>
-                                            <td>8.40</td>
-                                            <td>IPA</td>
-                                        </tr>
-                                        <tr>
-                                            <td>6</td>
-                                            <td>Moh. Raffy Suardi</td>
-                                            <td>8.10</td>
-                                            <td>8.40</td>
-                                            <td>IPS</td>
-                                        </tr>
-                                        <tr>
-                                            <td>7</td>
-                                            <td>Naufal Muhammad Fauzan</td>
-                                            <td>6.95</td>
-                                            <td>7.25</td>
-                                            <td>IPS</td>
-                                        </tr>
-                                        <tr>
-                                            <td>8</td>
-                                            <td>Athira Khanza</td>
-                                            <td>6.25</td>
-                                            <td>6.55</td>
-                                            <td>IPS</td>
-                                        </tr>
-                                        <tr>
-                                            <td>9</td>
-                                            <td>Jehan Anisa Humairah</td>
-                                            <td>7.15</td>
-                                            <td>6.70</td>
-                                            <td>IPA</td>
-                                        </tr>
-                                        <tr>
-                                            <td>10</td>
-                                            <td>Sayida Salima</td>
-                                            <td>7.65</td>
-                                            <td>7.35</td>
-                                            <td>IPA</td>
-                                        </tr>
-                                    </tbody>
+                                    <tbody></tbody>
                                     <tfoot>
                                         <tr>
                                             <th>No</th>
+                                            <th>NIS</th>
                                             <th>Nama Siswa</th>
+                                            <th>Tahun Ajaran</th>
                                             <th>Nilai IPA</th>
                                             <th>Nilai IPS</th>
                                             <th>Hasil</th>
@@ -369,35 +359,83 @@
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">
                         Cancel
                     </button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="auth/logout.php">Logout</a>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+    <script src="../js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="../vendor/chart.js/Chart.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
+    <script src="../js/demo/chart-area-demo.js"></script>
+    <script src="../js/demo/chart-pie-demo.js"></script>
 
     <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- sweetalert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.8/dist/sweetalert2.all.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            tbl_pm_siswa();
+        })
+
+        function tbl_pm_siswa() {
+            $("#tbl_pm_siswa").DataTable({
+                lengthChange: true,
+                processing: true,
+                ajax: {
+                    url: "laporan/list-siswa-jurusan.php",
+                },
+                columns: [{
+                        data: null,
+                        sortable: false,
+                        render: function (data, type, row, meta) {
+                            return meta.row + meta.settings._iDisplayStart + 1;
+                        },
+                    },
+                    {
+                        data: "nis",
+                        name: "nis",
+                    },
+                    {
+                        data: "nama_siswa",
+                        name: "nama_siswa",
+                    },
+                    {
+                        data: "tahun_ajaran",
+                        name: "tahun_ajaran",
+                    },
+                    {
+                        data: "n_total_ipa",
+                        name: "n_total_ipa",
+                    },
+                    {
+                        data: "n_total_ips",
+                        name: "n_total_ips",
+                    },
+                    {
+                        data: "jurusan",
+                        name: "jurusan",
+                    },
+                ],
+            });
+        }
+    </script>
 
 </body>
 

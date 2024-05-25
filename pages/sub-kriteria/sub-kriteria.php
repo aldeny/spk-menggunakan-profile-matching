@@ -83,9 +83,14 @@
                     <span>Data Siswa</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
+                <a class="nav-link" href="../profile-matching/profile-matching.php">
+                    <i class="fas fa-fw fa-certificate"></i>
                     <span>Profile Matching</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../laporan/laporan.php">
+                    <i class="fas fa-fw fa-chart-bar"></i>
+                    <span>Laporan Profile Matching</span></a>
             </li>
 
             <!-- Divider -->
