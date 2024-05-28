@@ -19,11 +19,13 @@ if (!isset($_SESSION['username'])) {
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>SPK - Sub Kriteria</title>
+    <title>SPK - User</title>
 
     <!-- Custom fonts for this template-->
     <link href="../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet" />
 
     <!-- Custom styles for this template-->
     <link href="../../css/sb-admin-2.min.css" rel="stylesheet" />
@@ -63,16 +65,17 @@ if (!isset($_SESSION['username'])) {
             <div class="sidebar-heading">Data Master</div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item active">
-                <a class="nav-link" href="#" data-toggle="collapse" data-target="#master" aria-expanded="true" aria-controls="master">
+            <li class="nav-item">
+                <a class="nav-link" href="#" data-toggle="collapse" data-target="#master" aria-expanded="true"
+                    aria-controls="master">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Data Master</span>
                 </a>
-                <div id="master" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="master" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Settings Data Master:</h6>
-                        <a class="collapse-item" href="../kriteria/kriteria.php">Kriteria</a>
-                        <a class="collapse-item bg-gray-300" href="sub-kriteria.php">Sub Kriteria</a>
+                        <a class="collapse-item" href="kriteria.php">Kriteria</a>
+                        <a class="collapse-item" href="../sub-kriteria/sub-kriteria.php">Sub Kriteria</a>
                         <a class="collapse-item" href="../target/target.php">Nilai Target</a>
                     </div>
                 </div>
@@ -90,6 +93,7 @@ if (!isset($_SESSION['username'])) {
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Data Siswa</span></a>
             </li>
+
             <li class="nav-item">
                 <a class="nav-link" href="../profile-matching/profile-matching.php">
                     <i class="fas fa-fw fa-certificate"></i>
@@ -99,6 +103,18 @@ if (!isset($_SESSION['username'])) {
                 <a class="nav-link" href="../laporan/laporan.php">
                     <i class="fas fa-fw fa-chart-bar"></i>
                     <span>Laporan Profile Matching</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block" />
+
+            <!-- Heading -->
+            <div class="sidebar-heading">Account</div>
+
+            <li class="nav-item active">
+                <a class="nav-link" href="user/user.php">
+                    <i class="fas fa-fw fa-user"></i>
+                    <span>Users</span></a>
             </li>
 
             <!-- Divider -->
@@ -127,12 +143,15 @@ if (!isset($_SESSION['username'])) {
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small text-capitalize"><?php echo $_SESSION['username']; ?></span>
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span
+                                    class="mr-2 d-none d-lg-inline text-gray-600 small text-capitalize"><?php echo $_SESSION['username']; ?></span>
                                 <img class="img-profile rounded-circle" src="../../img/undraw_profile.svg" />
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
@@ -147,7 +166,7 @@ if (!isset($_SESSION['username'])) {
                 <div class="container-fluid">
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Data Sub Kriteria</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Data Users</h1>
                     </div>
 
                     <!-- DataTales Example -->
@@ -155,90 +174,47 @@ if (!isset($_SESSION['username'])) {
                         <div class="col-4">
                             <div class="card shadow">
                                 <div class="card-header bg-success">
-                                    <h6 class="m-0 font-weight-bold text-white"><i class="fas fa-plus"></i> Add Sub
-                                        Kriteria
+                                    <h6 class="m-0 font-weight-bold text-white"><i class="fas fa-plus"></i> Add User
                                     </h6>
                                 </div>
                                 <div class="card-body">
-                                    <form id="form-subKriteria">
+                                    <form id="form-user">
                                         <div class="form-group">
-                                            <label for="kriteria_id">Kriteria</label>
-                                            <select class="form-control" name="kriteria_id" id="kriteria_id">
-                                                <option value="0" selected disabled>Pilih Kriteria</option>
+                                            <label for="fullName">Nama</label>
+                                            <input type="hidden" id="id" name="id">
+                                            <input type="hidden" id="action" name="action">
+                                            <input type="text" class="form-control" id="fullName" name="fullName"
+                                                placeholder="Masukkan Nama" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="username">Username</label>
+                                            <input type="text" class="form-control" id="username" name="username"
+                                                placeholder="Masukkan Username" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="password">Password</label>
+                                            <input type="password" class="form-control" id="password" name="password"
+                                                placeholder="******" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="roleId">Hak Akses</label>
+                                            <select class="form-control" id="roleId" name="roleId" required>
+                                                <option value="0" selected disabled>Pilih Hak Akses</option>
                                                 <?php
+
                                                 include '../../config/koneksi.php';
 
-                                                // Query untuk mengambil data siswa
-                                                $sql = "SELECT * FROM kriteria";
+                                                $sql = "SELECT * FROM role";
                                                 $query = mysqli_query($konek, $sql);
-
-                                                while ($data = mysqli_fetch_array($query)) {
-                                                ?>
-                                                    <option value="<?php echo $data['id'] ?>">
-                                                        <?php echo $data['nama_kriteria'] ?></option>
-                                                <?php
+                                                while ($row = mysqli_fetch_assoc($query)) {
+                                                    echo '<option value="' . $row['id'] . '">' . $row['role_name'] . '</option>';
                                                 }
                                                 ?>
                                             </select>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="sub_kriteria">Sub Kriteria</label>
-                                            <input type="hidden" id="id" name="id">
-                                            <input type="hidden" id="action" name="action">
-                                            <input type="hidden" id="sub_kriteria_lama" name="sub_kriteria_lama">
-                                            <input type="text" class="form-control" id="sub_kriteria" name="sub_kriteria" placeholder="Masukkan Sub Kriteria" required>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-8">
-                                                <div class="form-group">
-                                                    <label for="factor">Factor</label>
-                                                    <select name="factor" id="factor" class="form-control">
-                                                        <option value="1" selected disabled>Pilhih Factor</option>
-                                                        <option value="NCF">NCF</option>
-                                                        <option value="NSF">NSF</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-4">
-                                                <label for="kode">Kode</label>
-                                                <?php
-                                                include '../../config/koneksi.php';
-
-                                                $sql = "SELECT MAX(kode) AS kodeTerbesar FROM sub_kriteria";
-                                                $query = mysqli_query($konek, $sql);
-
-                                                // Inisialisasi urutan dengan nilai awal
-                                                $urutan = 1;
-
-                                                if ($query) {
-                                                    $data = mysqli_fetch_array($query);
-                                                    $kodeTerbesar = $data['kodeTerbesar'];
-
-                                                    // Jika ada data, maka urutan diambil dari kode terbesar
-                                                    if ($kodeTerbesar) {
-                                                        // Mengonversi huruf ke nilai angka dan menambahkan 1
-                                                        // $urutan = ord(substr($kodeTerbesar, 0, 1)) - 64;
-                                                        $urutan = (int) substr($kodeTerbesar, 1, 3);
-                                                        $urutan++;
-
-                                                        $huruf = "C";
-                                                    }
-                                                }
-
-                                                // Mengonversi urutan ke huruf dan format yang diinginkan
-                                                $kodeBaru = $huruf . sprintf("%01s", $urutan);
-
-                                                // Menampilkan input dengan nilai kode baru
-                                                ?>
-                                                <input type="text" class="form-control" id="kode" name="kode" readonly value="<?php echo $kodeBaru; ?>">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="keterangan">Keterangan</label>
-                                            <textarea name="keterangan" id="keterangan" class="form-control" placeholder="Masukkan Keterangan" required></textarea>
-                                        </div>
                                         <div>
-                                            <button type="submit" class="btn btn-primary" id="btnAdd"><i class="fas fa-save"></i> Simpan</button>
+                                            <button type="submit" class="btn btn-primary" id="btnAdd"><i
+                                                    class="fas fa-save"></i> Simpan</button>
                                             <button type="reset" class="btn btn-secondary" id="btnReset">Reset</button>
                                         </div>
                                     </form>
@@ -248,30 +224,26 @@ if (!isset($_SESSION['username'])) {
                         <div class="col-8">
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Data Sub Kriteria</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Data Users</h6>
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered" id="tblSubKriteria" width="100%" cellspacing="0">
+                                        <table class="table table-bordered" id="tblUsers" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
-                                                    <th>Kriteria</th>
-                                                    <th>Sub Kriteria</th>
-                                                    <th>Factor</th>
-                                                    <th>Kode</th>
-                                                    <th>Keterangan</th>
+                                                    <th>Nama</th>
+                                                    <th>Username</th>
+                                                    <th>Hak Akses</th>
                                                     <th>Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tfoot>
                                                 <tr>
                                                     <th>No</th>
-                                                    <th>Kriteria</th>
-                                                    <th>Sub Kriteria</th>
-                                                    <th>Factor</th>
-                                                    <th>Kode</th>
-                                                    <th>Keterangan</th>
+                                                    <th>Nama</th>
+                                                    <th>Username</th>
+                                                    <th>Hak Akses</th>
                                                     <th>Aksi</th>
                                                 </tr>
                                             </tfoot>
@@ -308,7 +280,8 @@ if (!isset($_SESSION['username'])) {
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-danger">
@@ -362,39 +335,38 @@ if (!isset($_SESSION['username'])) {
 
         function resetForm() {
             $("#id").val('');
-            $("#sub_kriteria").val('');
-            $("#sub_kriteria_lama").val('');
-            $("[name=kriteria_id] option[value='0']").prop("selected", true);
-            $("[name=factor] option[value='1']").prop("selected", true);
-            $("#keterangan").val('');
+            $("#fullName").val('');
+            $("#username").val('');
+            $("#password").val('');
+            $("[name=roleId] option[value='0']").prop("selected", true);
             $("#action").val('');
         }
 
-        $(document).ready(function() {
+        $(document).ready(function () {
+            tblUsers();
 
-            tbl_sub_kriteria();
-
-            $("#form-subKriteria").on("submit", function(e) {
+            $("#form-user").on("submit", function (e) {
                 e.preventDefault();
                 var formData = new FormData(this);
 
                 if ($("#action").val() == "edit") {
                     $.ajax({
-                        url: "update-sub-kriteria.php",
+                        url: "update-user.php",
                         method: "POST",
                         data: formData,
                         processData: false,
                         contentType: false,
                         dataType: "json",
-                        success: function(response) {
+                        success: function (response) {
                             if (response.status == "success") {
                                 Toast.fire({
                                     icon: "success",
                                     title: response.message,
                                 });
-                                $("#tblSubKriteria").DataTable().ajax.reload();
+                                $("#tblKriteria").DataTable().ajax.reload();
+
                                 resetForm();
-                                $("#kode").val(response.kode);
+
                             } else {
                                 // Tampilkan pesan error jika diperlukan
                                 Toast.fire({
@@ -403,7 +375,7 @@ if (!isset($_SESSION['username'])) {
                                 });
                             }
                         },
-                        error: function(xhr, status, error) {
+                        error: function (xhr, status, error) {
                             // Tangani error dan tampilkan pesan kesalahan yang sesuai
                             var errorMessage = xhr.responseJSON ? xhr.responseJSON.message :
                                 "Terjadi kesalahan saat memproses permintaan.";
@@ -415,24 +387,20 @@ if (!isset($_SESSION['username'])) {
                     });
                 } else {
                     $.ajax({
-                        url: "add-sub-kriteria.php",
+                        url: "add-user.php",
                         method: "POST",
                         data: formData,
                         processData: false,
                         contentType: false,
                         dataType: "json",
-                        success: function(response) {
-                            console.log(response.kode);
+                        success: function (response) {
                             if (response.status == "success") {
                                 Toast.fire({
                                     icon: "success",
                                     title: response.message,
                                 });
-
-                                $("#tblSubKriteria").DataTable().ajax.reload();
-
+                                $("#tblUsers").DataTable().ajax.reload();
                                 resetForm();
-                                $("#kode").val(response.kode);
                             } else {
                                 // Tampilkan pesan error jika diperlukan
                                 Toast.fire({
@@ -441,7 +409,7 @@ if (!isset($_SESSION['username'])) {
                                 });
                             }
                         },
-                        error: function(xhr, status, error) {
+                        error: function (xhr, status, error) {
                             // Tangani error dan tampilkan pesan kesalahan yang sesuai
                             var errorMessage = xhr.responseJSON ? xhr.responseJSON.message :
                                 "Terjadi kesalahan saat memproses permintaan.";
@@ -455,40 +423,38 @@ if (!isset($_SESSION['username'])) {
             });
         });
 
-        $(document).on("click", "#btn-edit", function() {
+        $(document).on("click", "#btn-edit", function () {
             const id = $(this).data("id");
 
             $.ajax({
-                url: "edit-sub-kriteria.php?id=" + id,
+                url: "edit-user.php?id=" + id,
                 data: {
                     id: id,
                 },
                 method: "post",
                 dataType: "json",
-                success: function(data) {
+                success: function (data) {
                     $("#id").val(data.id);
-                    $("#kriteria_id").val(data.kriteria_id);
-                    $("#sub_kriteria").val(data.sub_kriteria);
-                    $("#sub_kriteria_lama").val(data.sub_kriteria);
-                    $("#factor").val(data.faktor);
-                    $("#kode").val(data.kode);
-                    $("#keterangan").val(data.keterangan);
+                    $("#fullName").val(data.name);
+                    $("#username").val(data.username);
+                    $("#password").val(data.password);
+                    $("[name=roleId] option[value='" + data.role_id + "']").prop("selected", true);
                     $("#action").val("edit");
                 },
-                error: function(data) {
+                error: function (data) {
                     alert("Error");
                 },
             });
         });
 
-        $(document).on("click", "#btn-hapus", function() {
+        $(document).on("click", "#btn-hapus", function () {
             const id = $(this).data("id");
 
-            var table_sub_kriteria = $("#tblSubKriteria").DataTable();
+            var tblUsers = $("#tblUsers").DataTable();
 
             Swal.fire({
                 title: "Anda yakin?",
-                text: "Data sub kriteria akan dihapus!",
+                text: "Data user akan dihapus!",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
@@ -498,26 +464,24 @@ if (!isset($_SESSION['username'])) {
                 if (result.isConfirmed) {
                     $.ajax({
                         type: "POST",
-                        url: "hapus-sub-kriteria.php?id=" + id,
+                        url: "hapus-user.php?id=" + id,
                         data: {
                             id: id,
                         },
                         dataType: "json",
-                        success: function(response) {
-                            if (response.status == "success") {
+                        success: function (response) {
+                            if (response.success) {
                                 // Tampilkan pesan sukses atau lakukan tindakan lainnya
                                 Toast.fire({
                                     icon: "success",
-                                    title: response.message,
+                                    title: "Data user berhasil dihapus",
                                 });
-                                table_sub_kriteria.ajax.reload();
-                                $("#kode").val(response.kode);
-                                resetForm().reset();
+                                tblUsers.ajax.reload();
                             } else {
                                 // Tampilkan pesan error jika diperlukan
                                 Toast.fire({
                                     icon: "error",
-                                    title: response.message,
+                                    title: "Data user gagal dihapus",
                                 });
                             }
                         },
@@ -526,41 +490,31 @@ if (!isset($_SESSION['username'])) {
             });
         });
 
-
-
-        function tbl_sub_kriteria() {
-            $("#tblSubKriteria").DataTable({
+        function tblUsers() {
+            $("#tblUsers").DataTable({
                 lengthChange: true,
                 processing: false,
                 ajax: {
-                    url: "list-sub-kriteria.php",
+                    url: "list-user.php",
                 },
                 columns: [{
                         data: null,
                         sortable: false,
-                        render: function(data, type, row, meta) {
+                        render: function (data, type, row, meta) {
                             return meta.row + meta.settings._iDisplayStart + 1;
                         },
                     },
                     {
-                        data: "nama_kriteria",
-                        name: "nama_kriteria",
+                        data: "name",
+                        name: "name",
                     },
                     {
-                        data: "sub_kriteria",
-                        name: "sub_kriteria",
+                        data: "username",
+                        name: "username",
                     },
                     {
-                        data: "faktor",
-                        name: "faktor",
-                    },
-                    {
-                        data: "kode",
-                        name: "kode",
-                    },
-                    {
-                        data: "keterangan",
-                        name: "keterangan",
+                        data: "role_name",
+                        name: "role_name",
                     },
                     {
                         data: "aksi",
