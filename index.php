@@ -1,11 +1,11 @@
 <?php
 session_start();
 
-    // Check if user is already logged in, redirect to dashboard
-    if(isset($_SESSION['username'])) {
-        header("Location: pages/dashboard.php");
-        exit();
-    }
+// Check if user is already logged in, redirect to dashboard
+if (isset($_SESSION['username'])) {
+    header("Location: pages/dashboard.php");
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,12 +22,13 @@ session_start();
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+    <!-- sweetalert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.8/dist/sweetalert2.all.min.js"></script>
 
 </head>
 
@@ -53,13 +54,10 @@ session_start();
                                     </div>
                                     <form class="user" action="pages/auth/login.php" method="POST">
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user" id="username"
-                                                name="username" aria-describedby="emailHelp"
-                                                placeholder="Masukkan Username">
+                                            <input type="text" class="form-control form-control-user" id="username" name="username" aria-describedby="emailHelp" placeholder="Masukkan Username">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user" id="password"
-                                                name="password" placeholder="Masukkan Password">
+                                            <input type="password" class="form-control form-control-user" id="password" name="password" placeholder="Masukkan Password">
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-user btn-block">Login</button>
                                     </form>
@@ -75,6 +73,21 @@ session_start();
 
     </div>
 
+    <?php
+    if (isset($_SESSION['error'])) {
+    ?>
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Login Gagal',
+                text: '<?php echo $_SESSION['error']; ?>',
+            })
+        </script>
+    <?php
+        unset($_SESSION['error']);
+    }
+    ?>
+
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -84,6 +97,9 @@ session_start();
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+
+    <!-- sweetalert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.8/dist/sweetalert2.all.min.js"></script>
 
 </body>
 
