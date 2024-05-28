@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+// Check if user is not logged in, redirect to login page
+if (!isset($_SESSION['username'])) {
+    header("Location: ../../index.php");
+    exit();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,9 +26,7 @@
 
     <!-- Custom fonts for this template-->
     <link href="../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
 
     <!-- Custom styles for this template-->
     <link href="../../css/sb-admin-2.min.css" rel="stylesheet" />
@@ -62,8 +71,7 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#master" aria-expanded="true"
-                    aria-controls="master">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#master" aria-expanded="true" aria-controls="master">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Data Master</span>
                 </a>
@@ -119,14 +127,12 @@
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg" />
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['username']; ?></span>
+                                <img class="img-profile rounded-circle" src="../../img/undraw_profile.svg" />
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
@@ -156,8 +162,7 @@
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Data Profile Matching</h1>
                         <div class="d-sm-flex align-items-center justify-content-between ">
-                            <a href="" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                    class="fas fa-download fa-sm text-white-50"></i> Generate
+                            <a href="" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate
                                 Report</a>
                         </div>
                     </div>
@@ -217,8 +222,7 @@
     </a>
 
     <!-- detail Modal -->
-    <div class="modal fade" id="detailModal" data-backdrop="static" tabindex="-1" role="dialog"
-        aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="detailModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-info">
@@ -288,14 +292,14 @@
                         <table class="table table-bordered" id="table_result" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>PPDB</th>
-                                    <th>IPA</th>
-                                    <th>IPS</th>
-                                    <th>MTK</th>
-                                    <th>B.Indonesia</th>
-                                    <th>Psikotes</th>
-                                    <th>Minat Siswa</th>
-                                    <th>Minat Orang Tua</th>
+                                    <th>C1</th>
+                                    <th>C2</th>
+                                    <th>C3</th>
+                                    <th>C4</th>
+                                    <th>C5</th>
+                                    <th>C6</th>
+                                    <th>C7</th>
+                                    <th>C8</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -319,7 +323,6 @@
                         <table class="table table-bordered" id="table_result" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>Nama Siswa</th>
                                     <th>NCF Akademik</th>
                                     <th>NSF Akademik</th>
                                     <th>N1</th>
@@ -331,7 +334,6 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td id="siswa_name"></td>
                                     <td id="ncf_akademik_ipa"></td>
                                     <td id="nsf_akademik_ipa"></td>
                                     <td id="n1_ipa"></td>
@@ -350,7 +352,6 @@
                         <table class="table table-bordered" id="table_result" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>Nama Siswa</th>
                                     <th>NCF Akademik</th>
                                     <th>NSF Akademik</th>
                                     <th>N1</th>
@@ -362,7 +363,6 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td id="siswa_name2"></td>
                                     <td id="ncf_akademik_ips"></td>
                                     <td id="nsf_akademik_ips"></td>
                                     <td id="n1_ips"></td>
@@ -407,8 +407,7 @@
     <!-- End of detail Modal -->
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -453,7 +452,7 @@
     <script>
         function resetFormAndSelect2(formId, select2Id) {
             $(formId)[0].reset(); // Reset semua elemen form
-            setTimeout(function () {
+            setTimeout(function() {
                 $(select2Id).val(null).trigger('change'); // Reset nilai Select2
             }, 0);
         }
@@ -469,7 +468,7 @@
             $('#minat_ortu').val('');
         }
 
-        $(document).ready(function () {
+        $(document).ready(function() {
 
             tbl_result();
 
@@ -477,7 +476,7 @@
                 theme: "bootstrap4",
             });
 
-            $("#form-profile").on("submit", function (e) {
+            $("#form-profile").on("submit", function(e) {
                 e.preventDefault();
 
                 var formData = new FormData(this);
@@ -491,7 +490,7 @@
                     processData: false,
                     contentType: false,
                     dataType: "json",
-                    success: function (response) {
+                    success: function(response) {
                         if (response.status == "success") {
 
                             console.log(response.data);
@@ -515,7 +514,7 @@
                             });
                         }
                     },
-                    error: function (xhr, status, error) {
+                    error: function(xhr, status, error) {
                         var errorMessage = xhr.responseJSON ? xhr.responseJSON
                             .message :
                             "Terjadi kesalahan saat memproses permintaan.";
@@ -531,7 +530,7 @@
             });
         });
 
-        $(document).on("click", "#btn-detail", function () {
+        $(document).on("click", "#btn-detail", function() {
 
             const id = $(this).data("id");
 
@@ -542,7 +541,7 @@
                 },
                 method: "POST",
                 dataType: "JSON",
-                success: function (data) {
+                success: function(data) {
 
                     $("#detailModal").modal("show");
 
@@ -617,7 +616,7 @@
 
 
                 },
-                error: function (xhr, status, error) {
+                error: function(xhr, status, error) {
                     // Tangani error dan tampilkan pesan kesalahan yang sesuai
                     var errorMessage = xhr.responseJSON ? xhr.responseJSON.message :
                         "Terjadi kesalahan saat memproses permintaan.";
@@ -629,7 +628,7 @@
             })
         })
 
-        $(document).on("click", "#btn-edit", function () {
+        $(document).on("click", "#btn-edit", function() {
             const id = $(this).data("id");
 
             $.ajax({
@@ -639,7 +638,7 @@
                 },
                 method: "post",
                 dataType: "json",
-                success: function (data) {
+                success: function(data) {
                     $("#siswaModal").modal("show");
                     $("#ModalLabel").html("Edit Data Siswa");
                     $(".modal-header").addClass("bg-info");
@@ -662,13 +661,13 @@
                         );
                     $("#action").val("edit");
                 },
-                error: function (data) {
+                error: function(data) {
                     alert("Error");
                 },
             });
         });
 
-        $(document).on("click", "#btn-hapus", function () {
+        $(document).on("click", "#btn-hapus", function() {
             const id = $(this).data("id");
 
             var tablePM = $("#table_result").DataTable();
@@ -690,7 +689,7 @@
                             id: id,
                         },
                         dataType: "json",
-                        success: function (response) {
+                        success: function(response) {
                             if (response.status == "success") {
                                 // Tampilkan pesan sukses atau lakukan tindakan lainnya
                                 Toast.fire({
@@ -735,7 +734,7 @@
                 columns: [{
                         data: null,
                         sortable: false,
-                        render: function (data, type, row, meta) {
+                        render: function(data, type, row, meta) {
                             return meta.row + meta.settings._iDisplayStart + 1;
                         },
                     },

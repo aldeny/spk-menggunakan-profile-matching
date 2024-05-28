@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+// Check if user is not logged in, redirect to login page
+if (!isset($_SESSION['username'])) {
+    header("Location: ../../index.php");
+    exit();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,9 +23,7 @@
 
     <!-- Custom fonts for this template-->
     <link href="../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
 
     <!-- Custom styles for this template-->
     <link href="../../css/sb-admin-2.min.css" rel="stylesheet" />
@@ -55,8 +64,7 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item active">
-                <a class="nav-link" href="#" data-toggle="collapse" data-target="#master" aria-expanded="true"
-                    aria-controls="master">
+                <a class="nav-link" href="#" data-toggle="collapse" data-target="#master" aria-expanded="true" aria-controls="master">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Data Master</span>
                 </a>
@@ -120,14 +128,12 @@
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg" />
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['username']; ?></span>
+                                <img class="img-profile rounded-circle" src="../../img/undraw_profile.svg" />
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
@@ -187,21 +193,21 @@
                                                         <option value="0" disabled selected>Pilih Kode Sub Kriteria
                                                         </option>
                                                         <?php
-                                                            include '../../config/koneksi.php';
+                                                        include '../../config/koneksi.php';
 
-                                                            // Query untuk mengambil kode sub kriteria
+                                                        // Query untuk mengambil kode sub kriteria
 
-                                                            $sql = "SELECT id, kode, sub_kriteria FROM sub_kriteria";
+                                                        $sql = "SELECT id, kode, sub_kriteria FROM sub_kriteria";
 
-                                                            $query = mysqli_query($konek, $sql);
+                                                        $query = mysqli_query($konek, $sql);
 
-                                                            while ($data = mysqli_fetch_array($query)) {
+                                                        while ($data = mysqli_fetch_array($query)) {
                                                         ?>
-                                                        <option value="<?php echo $data['id'] ?>">
-                                                            <?php echo $data['kode'] ?> -
-                                                            <?php echo $data['sub_kriteria'] ?></option>
+                                                            <option value="<?php echo $data['id'] ?>">
+                                                                <?php echo $data['kode'] ?> -
+                                                                <?php echo $data['sub_kriteria'] ?></option>
                                                         <?php
-                                                            }
+                                                        }
                                                         ?>
                                                     </select>
                                                 </div>
@@ -209,14 +215,12 @@
                                             <div class="col-4">
                                                 <div class="form-group">
                                                     <label for="nilai_target">Nilai Target</label>
-                                                    <input type="number" class="form-control" id="nilai_target"
-                                                        name="nilai_target" placeholder="Ex:1-5" required min="1">
+                                                    <input type="number" class="form-control" id="nilai_target" name="nilai_target" placeholder="Ex:1-5" required min="1">
                                                 </div>
                                             </div>
                                         </div>
                                         <div>
-                                            <button type="submit" class="btn btn-primary" id="btnAdd"><i
-                                                    class="fas fa-save"></i> Simpan</button>
+                                            <button type="submit" class="btn btn-primary" id="btnAdd"><i class="fas fa-save"></i> Simpan</button>
                                             <button type="reset" class="btn btn-secondary" id="btnReset">Reset</button>
                                         </div>
                                     </form>
@@ -230,8 +234,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered" id="tbl_target" width="100%"
-                                            cellspacing="0">
+                                        <table class="table table-bordered" id="tbl_target" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
@@ -281,8 +284,7 @@
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -343,11 +345,11 @@
             $("#action").val('');
         }
 
-        $(document).ready(function () {
+        $(document).ready(function() {
 
             tbl_target();
 
-            $("#form-target").on("submit", function (e) {
+            $("#form-target").on("submit", function(e) {
                 e.preventDefault();
                 var formData = new FormData(this);
 
@@ -359,7 +361,7 @@
                         processData: false,
                         contentType: false,
                         dataType: "json",
-                        success: function (response) {
+                        success: function(response) {
                             if (response.status == "success") {
                                 Toast.fire({
                                     icon: "success",
@@ -375,7 +377,7 @@
                                 });
                             }
                         },
-                        error: function (xhr, status, error) {
+                        error: function(xhr, status, error) {
                             // Tangani error dan tampilkan pesan kesalahan yang sesuai
                             var errorMessage = xhr.responseJSON ? xhr.responseJSON.message :
                                 "Terjadi kesalahan saat memproses permintaan.";
@@ -393,7 +395,7 @@
                         processData: false,
                         contentType: false,
                         dataType: "json",
-                        success: function (response) {
+                        success: function(response) {
                             console.log(response.kode);
                             if (response.status == "success") {
                                 Toast.fire({
@@ -412,7 +414,7 @@
                                 });
                             }
                         },
-                        error: function (xhr, status, error) {
+                        error: function(xhr, status, error) {
                             // Tangani error dan tampilkan pesan kesalahan yang sesuai
                             var errorMessage = xhr.responseJSON ? xhr.responseJSON.message :
                                 "Terjadi kesalahan saat memproses permintaan.";
@@ -426,7 +428,7 @@
             });
         });
 
-        $(document).on("click", "#btn-edit", function () {
+        $(document).on("click", "#btn-edit", function() {
             const id = $(this).data("id");
 
             $.ajax({
@@ -436,21 +438,21 @@
                 },
                 method: "post",
                 dataType: "json",
-                success: function (data) {
-                    console.log(data.kode);
+                success: function(data) {
+                    console.log(data.id);
                     $("#id").val(data.id);
                     $("#kelas").val(data.kelas);
                     $("#nilai_target").val(data.nilai_target);
                     $("#kode").val(data.id);
                     $("#action").val("edit");
                 },
-                error: function (data) {
+                error: function(data) {
                     alert("Error");
                 },
             });
         });
 
-        $(document).on("click", "#btn-hapus", function () {
+        $(document).on("click", "#btn-hapus", function() {
             const id = $(this).data("id");
 
             var tbl_target = $("#tbl_target").DataTable();
@@ -472,7 +474,7 @@
                             id: id,
                         },
                         dataType: "json",
-                        success: function (response) {
+                        success: function(response) {
                             if (response.status == "success") {
                                 // Tampilkan pesan sukses atau lakukan tindakan lainnya
                                 Toast.fire({
@@ -506,7 +508,7 @@
                 columns: [{
                         data: null,
                         sortable: false,
-                        render: function (data, type, row, meta) {
+                        render: function(data, type, row, meta) {
                             return meta.row + meta.settings._iDisplayStart + 1;
                         },
                     },

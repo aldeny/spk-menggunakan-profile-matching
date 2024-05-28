@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+// Check if user is not logged in, redirect to login page
+if (!isset($_SESSION['username'])) {
+    header("Location: ../../index.php");
+    exit();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,9 +23,7 @@
 
     <!-- Custom fonts for this template-->
     <link href="../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
 
     <!-- Custom styles for this template-->
     <link href="../../css/sb-admin-2.min.css" rel="stylesheet" />
@@ -55,8 +64,7 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#master" aria-expanded="true"
-                    aria-controls="master">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#master" aria-expanded="true" aria-controls="master">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Data Master</span>
                 </a>
@@ -112,14 +120,12 @@
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg" />
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['username']; ?></span>
+                                <img class="img-profile rounded-circle" src="../../img/undraw_profile.svg" />
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
@@ -149,11 +155,8 @@
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Data Siswa</h1>
                         <div class="d-sm-flex align-items-center justify-content-between ">
-                            <a href="javascript:void(0)"
-                                class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm mr-2 btn-add"><i
-                                    class="fas fa-plus fa-sm text-white-50"></i> Add Siswa</a>
-                            <a href="" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                    class="fas fa-download fa-sm text-white-50"></i> Generate
+                            <a href="javascript:void(0)" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm mr-2 btn-add"><i class="fas fa-plus fa-sm text-white-50"></i> Add Siswa</a>
+                            <a href="" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate
                                 Report</a>
                         </div>
                     </div>
@@ -218,8 +221,7 @@
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -242,8 +244,7 @@
     </div>
 
     <!-- Modal Data Siswa-->
-    <div class="modal fade" id="siswaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="siswaModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -262,8 +263,7 @@
                         </div>
                         <div class="form-group">
                             <label for="nama_siswa">Nama Siswa</label>
-                            <input type="text" class="form-control" id="nama_siswa" name="nama_siswa"
-                                placeholder="Nama Siswa" required>
+                            <input type="text" class="form-control" id="nama_siswa" name="nama_siswa" placeholder="Nama Siswa" required>
                         </div>
                         <div class="form-group">
                             <label for="kelas">Kelas</label>
@@ -339,7 +339,7 @@
             },
         });
 
-        $("#siswaModal").on("hide.bs.modal", function () {
+        $("#siswaModal").on("hide.bs.modal", function() {
             $("#ModalLabel").html("Tambah Data Siswa");
             $(".modal-header").removeClass("bg-info");
             $("#id").val("");
@@ -355,15 +355,18 @@
           <option value="Laki-Laki">Laki-Laki</option>
           <option value="Perempuan">Perempuan</option>`);
             $("#tahun_ajaran").html(
-                '<option selected disabled>Pilih Tahun Ajaran</option><?php $now = date("Y"); for ($i = 2021; $i <= $now; $i++) { echo "<option value=\'$i\'>$i</option>"; } ?>'
+                '<option selected disabled>Pilih Tahun Ajaran</option><?php $now = date("Y");
+                                                                        for ($i = 2021; $i <= $now; $i++) {
+                                                                            echo "<option value=\'$i\'>$i</option>";
+                                                                        } ?>'
             );
             $("#action").val("add");
         });
 
-        $(document).ready(function () {
+        $(document).ready(function() {
             tbl_siswa();
 
-            $("#form-siswa").on("submit", function (e) {
+            $("#form-siswa").on("submit", function(e) {
                 e.preventDefault();
 
                 var formData = new FormData(this);
@@ -376,7 +379,7 @@
                         processData: false,
                         contentType: false,
                         dataType: "json",
-                        success: function (response) {
+                        success: function(response) {
                             if (response.success) {
                                 // Tampilkan pesan sukses atau lakukan tindakan lainnya
                                 $("#siswaModal").modal("hide");
@@ -395,7 +398,7 @@
                                 });
                             }
                         },
-                        error: function (response) {
+                        error: function(response) {
                             Toast.fire({
                                 icon: "error",
                                 title: "Periksa kembali form inputan anda",
@@ -411,7 +414,7 @@
                         processData: false,
                         contentType: false,
                         dataType: "json",
-                        success: function (response) {
+                        success: function(response) {
                             if (response.status == "success") {
                                 // Tampilkan pesan sukses atau lakukan tindakan lainnya
                                 $("#siswaModal").modal("hide");
@@ -428,7 +431,7 @@
                                 });
                             }
                         },
-                        error: function (response) {
+                        error: function(response) {
                             Toast.fire({
                                 icon: "error",
                                 title: "Periksa kembali form inputan anda",
@@ -439,7 +442,7 @@
             });
         });
 
-        $(document).on("click", ".btn-add", function () {
+        $(document).on("click", ".btn-add", function() {
             $("#siswaModal").modal("show");
             //ubah warna header modal
             $(".modal-header").addClass("bg-success");
@@ -448,7 +451,7 @@
             $("#action").val("add");
         });
 
-        $(document).on("click", "#btn-edit", function () {
+        $(document).on("click", "#btn-edit", function() {
             const id = $(this).data("id");
 
             $.ajax({
@@ -458,7 +461,7 @@
                 },
                 method: "post",
                 dataType: "json",
-                success: function (data) {
+                success: function(data) {
                     $("#siswaModal").modal("show");
                     $("#ModalLabel").html("Edit Data Siswa");
                     $(".modal-header").addClass("bg-info");
@@ -479,13 +482,13 @@
                     );
                     $("#action").val("edit");
                 },
-                error: function (data) {
+                error: function(data) {
                     alert("Error");
                 },
             });
         });
 
-        $(document).on("click", "#btn-hapus", function () {
+        $(document).on("click", "#btn-hapus", function() {
             const id = $(this).data("id");
 
             var tableSiswa = $("#tblSiswa").DataTable();
@@ -507,7 +510,7 @@
                             id: id,
                         },
                         dataType: "json",
-                        success: function (response) {
+                        success: function(response) {
                             if (response.success) {
                                 // Tampilkan pesan sukses atau lakukan tindakan lainnya
                                 Toast.fire({
@@ -540,7 +543,7 @@
                 columns: [{
                         data: null,
                         sortable: false,
-                        render: function (data, type, row, meta) {
+                        render: function(data, type, row, meta) {
                             return meta.row + meta.settings._iDisplayStart + 1;
                         },
                     },

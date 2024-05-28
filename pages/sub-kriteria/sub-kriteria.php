@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+// Check if user is not logged in, redirect to login page
+if (!isset($_SESSION['username'])) {
+    header("Location: ../../index.php");
+    exit();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,9 +23,7 @@
 
     <!-- Custom fonts for this template-->
     <link href="../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
 
     <!-- Custom styles for this template-->
     <link href="../../css/sb-admin-2.min.css" rel="stylesheet" />
@@ -55,8 +64,7 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item active">
-                <a class="nav-link" href="#" data-toggle="collapse" data-target="#master" aria-expanded="true"
-                    aria-controls="master">
+                <a class="nav-link" href="#" data-toggle="collapse" data-target="#master" aria-expanded="true" aria-controls="master">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Data Master</span>
                 </a>
@@ -119,14 +127,12 @@
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['username']; ?></span>
                                 <img class="img-profile rounded-circle" src="../../img/undraw_profile.svg" />
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
@@ -173,18 +179,18 @@
                                             <select class="form-control" name="kriteria_id" id="kriteria_id">
                                                 <option value="0" selected disabled>Pilih Kriteria</option>
                                                 <?php
-                                                    include '../../config/koneksi.php';
+                                                include '../../config/koneksi.php';
 
-                                                    // Query untuk mengambil data siswa
-                                                    $sql = "SELECT * FROM kriteria";
-                                                    $query = mysqli_query($konek, $sql);
+                                                // Query untuk mengambil data siswa
+                                                $sql = "SELECT * FROM kriteria";
+                                                $query = mysqli_query($konek, $sql);
 
-                                                    while ($data = mysqli_fetch_array($query)) {
+                                                while ($data = mysqli_fetch_array($query)) {
                                                 ?>
-                                                <option value="<?php echo $data['id'] ?>">
-                                                    <?php echo $data['nama_kriteria'] ?></option>
+                                                    <option value="<?php echo $data['id'] ?>">
+                                                        <?php echo $data['nama_kriteria'] ?></option>
                                                 <?php
-                                                    }
+                                                }
                                                 ?>
                                             </select>
                                         </div>
@@ -193,8 +199,7 @@
                                             <input type="hidden" id="id" name="id">
                                             <input type="hidden" id="action" name="action">
                                             <input type="hidden" id="sub_kriteria_lama" name="sub_kriteria_lama">
-                                            <input type="text" class="form-control" id="sub_kriteria"
-                                                name="sub_kriteria" placeholder="Masukkan Sub Kriteria" required>
+                                            <input type="text" class="form-control" id="sub_kriteria" name="sub_kriteria" placeholder="Masukkan Sub Kriteria" required>
                                         </div>
                                         <div class="row">
                                             <div class="col-8">
@@ -210,46 +215,43 @@
                                             <div class="col-4">
                                                 <label for="kode">Kode</label>
                                                 <?php
-                                                    include '../../config/koneksi.php';
+                                                include '../../config/koneksi.php';
 
-                                                    $sql = "SELECT MAX(kode) AS kodeTerbesar FROM sub_kriteria";
-                                                    $query = mysqli_query($konek, $sql);
-                                                    
-                                                    // Inisialisasi urutan dengan nilai awal
-                                                    $urutan = 1;
+                                                $sql = "SELECT MAX(kode) AS kodeTerbesar FROM sub_kriteria";
+                                                $query = mysqli_query($konek, $sql);
 
-                                                    if ($query) {
-                                                        $data = mysqli_fetch_array($query);
-                                                        $kodeTerbesar = $data['kodeTerbesar'];
-                                                        
-                                                        // Jika ada data, maka urutan diambil dari kode terbesar
-                                                        if ($kodeTerbesar) {
-                                                            // Mengonversi huruf ke nilai angka dan menambahkan 1
-                                                            // $urutan = ord(substr($kodeTerbesar, 0, 1)) - 64;
-                                                            $urutan = (int) substr($kodeTerbesar, 1, 3);
-                                                            $urutan++;
+                                                // Inisialisasi urutan dengan nilai awal
+                                                $urutan = 1;
 
-                                                            $huruf = "C";
-                                                        }
+                                                if ($query) {
+                                                    $data = mysqli_fetch_array($query);
+                                                    $kodeTerbesar = $data['kodeTerbesar'];
+
+                                                    // Jika ada data, maka urutan diambil dari kode terbesar
+                                                    if ($kodeTerbesar) {
+                                                        // Mengonversi huruf ke nilai angka dan menambahkan 1
+                                                        // $urutan = ord(substr($kodeTerbesar, 0, 1)) - 64;
+                                                        $urutan = (int) substr($kodeTerbesar, 1, 3);
+                                                        $urutan++;
+
+                                                        $huruf = "C";
                                                     }
-                                                    
-                                                    // Mengonversi urutan ke huruf dan format yang diinginkan
-                                                    $kodeBaru = $huruf . sprintf("%01s", $urutan);
+                                                }
 
-                                                    // Menampilkan input dengan nilai kode baru
+                                                // Mengonversi urutan ke huruf dan format yang diinginkan
+                                                $kodeBaru = $huruf . sprintf("%01s", $urutan);
+
+                                                // Menampilkan input dengan nilai kode baru
                                                 ?>
-                                                <input type="text" class="form-control" id="kode" name="kode" readonly
-                                                    value="<?php echo $kodeBaru; ?>">
+                                                <input type="text" class="form-control" id="kode" name="kode" readonly value="<?php echo $kodeBaru; ?>">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="keterangan">Keterangan</label>
-                                            <textarea name="keterangan" id="keterangan" class="form-control"
-                                                placeholder="Masukkan Keterangan" required></textarea>
+                                            <textarea name="keterangan" id="keterangan" class="form-control" placeholder="Masukkan Keterangan" required></textarea>
                                         </div>
                                         <div>
-                                            <button type="submit" class="btn btn-primary" id="btnAdd"><i
-                                                    class="fas fa-save"></i> Simpan</button>
+                                            <button type="submit" class="btn btn-primary" id="btnAdd"><i class="fas fa-save"></i> Simpan</button>
                                             <button type="reset" class="btn btn-secondary" id="btnReset">Reset</button>
                                         </div>
                                     </form>
@@ -263,8 +265,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered" id="tblSubKriteria" width="100%"
-                                            cellspacing="0">
+                                        <table class="table table-bordered" id="tblSubKriteria" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
@@ -320,8 +321,7 @@
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -383,11 +383,11 @@
             $("#action").val('');
         }
 
-        $(document).ready(function () {
+        $(document).ready(function() {
 
             tbl_sub_kriteria();
 
-            $("#form-subKriteria").on("submit", function (e) {
+            $("#form-subKriteria").on("submit", function(e) {
                 e.preventDefault();
                 var formData = new FormData(this);
 
@@ -399,7 +399,7 @@
                         processData: false,
                         contentType: false,
                         dataType: "json",
-                        success: function (response) {
+                        success: function(response) {
                             if (response.status == "success") {
                                 Toast.fire({
                                     icon: "success",
@@ -416,7 +416,7 @@
                                 });
                             }
                         },
-                        error: function (xhr, status, error) {
+                        error: function(xhr, status, error) {
                             // Tangani error dan tampilkan pesan kesalahan yang sesuai
                             var errorMessage = xhr.responseJSON ? xhr.responseJSON.message :
                                 "Terjadi kesalahan saat memproses permintaan.";
@@ -434,7 +434,7 @@
                         processData: false,
                         contentType: false,
                         dataType: "json",
-                        success: function (response) {
+                        success: function(response) {
                             console.log(response.kode);
                             if (response.status == "success") {
                                 Toast.fire({
@@ -454,7 +454,7 @@
                                 });
                             }
                         },
-                        error: function (xhr, status, error) {
+                        error: function(xhr, status, error) {
                             // Tangani error dan tampilkan pesan kesalahan yang sesuai
                             var errorMessage = xhr.responseJSON ? xhr.responseJSON.message :
                                 "Terjadi kesalahan saat memproses permintaan.";
@@ -468,7 +468,7 @@
             });
         });
 
-        $(document).on("click", "#btn-edit", function () {
+        $(document).on("click", "#btn-edit", function() {
             const id = $(this).data("id");
 
             $.ajax({
@@ -478,7 +478,7 @@
                 },
                 method: "post",
                 dataType: "json",
-                success: function (data) {
+                success: function(data) {
                     $("#id").val(data.id);
                     $("#kriteria_id").val(data.kriteria_id);
                     $("#sub_kriteria").val(data.sub_kriteria);
@@ -488,13 +488,13 @@
                     $("#keterangan").val(data.keterangan);
                     $("#action").val("edit");
                 },
-                error: function (data) {
+                error: function(data) {
                     alert("Error");
                 },
             });
         });
 
-        $(document).on("click", "#btn-hapus", function () {
+        $(document).on("click", "#btn-hapus", function() {
             const id = $(this).data("id");
 
             var table_sub_kriteria = $("#tblSubKriteria").DataTable();
@@ -516,7 +516,7 @@
                             id: id,
                         },
                         dataType: "json",
-                        success: function (response) {
+                        success: function(response) {
                             if (response.status == "success") {
                                 // Tampilkan pesan sukses atau lakukan tindakan lainnya
                                 Toast.fire({
@@ -551,7 +551,7 @@
                 columns: [{
                         data: null,
                         sortable: false,
-                        render: function (data, type, row, meta) {
+                        render: function(data, type, row, meta) {
                             return meta.row + meta.settings._iDisplayStart + 1;
                         },
                     },

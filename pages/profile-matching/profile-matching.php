@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+// Check if user is not logged in, redirect to login page
+if (!isset($_SESSION['username'])) {
+    header("Location: ../../index.php");
+    exit();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,9 +26,7 @@
 
     <!-- Custom fonts for this template-->
     <link href="../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
 
     <!-- Custom styles for this template-->
     <link href="../../css/sb-admin-2.min.css" rel="stylesheet" />
@@ -62,8 +71,7 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#master" aria-expanded="true"
-                    aria-controls="master">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#master" aria-expanded="true" aria-controls="master">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Data Master</span>
                 </a>
@@ -119,14 +127,12 @@
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg" />
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['username']; ?></span>
+                                <img class="img-profile rounded-circle" src="../../img/undraw_profile.svg" />
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
@@ -164,19 +170,19 @@
                                     <select name="id_siswa" id="id_siswa" class="form-control select2-siswa" required>
                                         <option value="" selected disabled>-- Pilih Siswa --</option>
                                         <?php
-                                    include '../../config/koneksi.php';
+                                        include '../../config/koneksi.php';
 
-                                    $sql = "SELECT * FROM students";
+                                        $sql = "SELECT * FROM students";
 
-                                    $query = mysqli_query($konek, $sql);
+                                        $query = mysqli_query($konek, $sql);
 
-                                    while ($data = mysqli_fetch_array($query)) {
-                                ?>
-                                        <option value="<?= $data['id'] ?>"><?= $data['nis'] ?> -
-                                            <?= $data['nama_siswa'] ?></option>
+                                        while ($data = mysqli_fetch_array($query)) {
+                                        ?>
+                                            <option value="<?= $data['id'] ?>"><?= $data['nis'] ?> -
+                                                <?= $data['nama_siswa'] ?></option>
                                         <?php
-                                    }
-                                ?>
+                                        }
+                                        ?>
                                     </select>
                                 </div>
                                 <div class="row">
@@ -185,15 +191,13 @@
                                             <label for="ppdb">Nilai PPDB</label>
                                             <input type="hidden" id="id" name="id">
                                             <input type="hidden" id="action" name="action">
-                                            <input type="number" class="form-control" id="ppdb" name="ppdb"
-                                                placeholder="ex: 90" required step="0.01">
+                                            <input type="number" class="form-control" id="ppdb" name="ppdb" placeholder="ex: 90" required step="0.01">
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="ipa">Nilai IPA</label>
-                                            <input type="number" class="form-control" id="ipa" name="ipa"
-                                                placeholder="ex: 90" required step="0.01">
+                                            <input type="number" class="form-control" id="ipa" name="ipa" placeholder="ex: 90" required step="0.01">
                                         </div>
                                     </div>
                                 </div>
@@ -201,15 +205,13 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="ips">Nilai IPS</label>
-                                            <input type="number" class="form-control" id="ips" name="ips"
-                                                placeholder="ex: 90" required step="0.01">
+                                            <input type="number" class="form-control" id="ips" name="ips" placeholder="ex: 90" required step="0.01">
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="mtk">Nilai MTK</label>
-                                            <input type="number" class="form-control" id="mtk" name="mtk"
-                                                placeholder="ex: 90" required step="0.01">
+                                            <input type="number" class="form-control" id="mtk" name="mtk" placeholder="ex: 90" required step="0.01">
                                         </div>
                                     </div>
                                 </div>
@@ -217,15 +219,13 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="bindo">Nilai B.Indonesia</label>
-                                            <input type="number" class="form-control" id="bindo" name="bindo"
-                                                placeholder="ex: 90" required step="0.01">
+                                            <input type="number" class="form-control" id="bindo" name="bindo" placeholder="ex: 90" required step="0.01">
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="psikotes">Nilai Psikotes</label>
-                                            <select class="form-control" id="psikotes" name="psikotes"
-                                                placeholder="ex: 90" required>
+                                            <select class="form-control" id="psikotes" name="psikotes" placeholder="ex: 90" required>
                                                 <option value="" selected disabled>-- Pilih Nilai --</option>
                                                 <option value="5">Bernilai IPA</option>
                                                 <option value="4">Bernilai IPA/IPS</option>
@@ -239,8 +239,7 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="minat">Nilai Minat Siswa</label>
-                                            <select class="form-control" id="minat" name="minat" placeholder="ex: 90"
-                                                required>
+                                            <select class="form-control" id="minat" name="minat" placeholder="ex: 90" required>
                                                 <option value="" selected disabled>-- Pilih Nilai --</option>
                                                 <option value="5">Jika == Psikotes</option>
                                                 <option value="2">Jika != Psikotes</option>
@@ -250,8 +249,7 @@
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="minat_ortu">Nilai Minat Orang Tua</label>
-                                            <select class="form-control" id="minat_ortu" name="minat_ortu"
-                                                placeholder="ex: 90" required>
+                                            <select class="form-control" id="minat_ortu" name="minat_ortu" placeholder="ex: 90" required>
                                                 <option value="" selected disabled>-- Pilih Nilai --</option>
                                                 <option value="5">Jika == Siswa</option>
                                                 <option value="2">Jika != Psikotes</option>
@@ -292,8 +290,7 @@
         </a>
 
         <!-- Result Modal -->
-        <div class="modal fade" id="resultModal" data-backdrop="static" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="resultModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header bg-success">
@@ -343,43 +340,44 @@
         </div>
         <!-- End of Result Modal -->
 
-        <!-- Detail Proses Profile Matching Modal -->
-        <div class="modal fade" id="detailModal" data-backdrop="static" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
+        <!-- detail Modal -->
+        <div class="modal fade" id="detailModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
                 <div class="modal-content">
                     <div class="modal-header bg-info">
-                        <h5 class="modal-title text-white" id="resultModalLabel">Detail Proses Profile Matching</h5>
+                        <h5 class="modal-title text-white" id="detailModalLabel">Proses Profile Matching</h5>
                         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">×</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <table class="table table-borderless table-responsive" id="table_result">
+                        <table class="table table-borderless table-responsive" id="table_detail">
                             <tr>
                                 <td>NIS</td>
                                 <td>:</td>
-                                <td class="text-capitalize font-weight-bold" id="nis"></td>
+                                <td class="text-capitalize font-weight-bold" id="nis2"></td>
                             </tr>
                             <tr>
                                 <td>Nama Siswa</td>
                                 <td>:</td>
-                                <td class="text-capitalize font-weight-bold" id="nama_siswa"></td>
+                                <td class="text-capitalize font-weight-bold" id="nama_siswa2"></td>
                             </tr>
                             <tr>
                                 <td>Kelas</td>
                                 <td>:</td>
-                                <td id="kelas"></td>
+                                <td id="kelas2"></td>
                             </tr>
                             <tr>
                                 <td>Tahun Ajaran</td>
                                 <td>:</td>
-                                <td id="tahun_ajaran"></td>
+                                <td id="tahun_ajaran2"></td>
                             </tr>
                         </table>
 
+                        <hr>
+
                         <div class="table-responsive">
-                            <h6>Nilai Siswa</h6>
+                            <h6 class="my-2 font-weight-bold text-primary">Nilai Siswa</h6>
                             <table class="table table-bordered" id="table_result" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
@@ -407,6 +405,115 @@
                                 </tbody>
                             </table>
                         </div>
+
+                        <div class="table-responsive">
+                            <h6 class="my-2 font-weight-bold text-primary">Nilai Normalisasi</h6>
+                            <table class="table table-bordered" id="table_result" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>C1</th>
+                                        <th>C2</th>
+                                        <th>C3</th>
+                                        <th>C4</th>
+                                        <th>C5</th>
+                                        <th>C6</th>
+                                        <th>C7</th>
+                                        <th>C8</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td id="normalisasi_ppdb"></td>
+                                        <td id="normalisasi_ipa"></td>
+                                        <td id="normalisasi_ips"></td>
+                                        <td id="normalisasi_mtk"></td>
+                                        <td id="normalisasi_bindo"></td>
+                                        <td id="normalisasi_psikotes"></td>
+                                        <td id="normalisasi_minat_siswa"></td>
+                                        <td id="normalisasi_minat_orang_tua"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="table-responsive">
+                            <h6 class="my-2 font-weight-bold text-primary">Perhitungan NCF, NSF dan Nilai Total Jurusan IPA
+                            </h6>
+                            <table class="table table-bordered" id="table_result" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>NCF Akademik</th>
+                                        <th>NSF Akademik</th>
+                                        <th>N1</th>
+                                        <th>NCF Non Akademik</th>
+                                        <th>NSF Non Akademik</th>
+                                        <th>N2</th>
+                                        <th>N1 + N2</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td id="ncf_akademik_ipa"></td>
+                                        <td id="nsf_akademik_ipa"></td>
+                                        <td id="n1_ipa"></td>
+                                        <td id="ncf_non_akademik_ipa"></td>
+                                        <td id="nsf_non_akademik_ipa"></td>
+                                        <td id="n2_ipa"></td>
+                                        <td id="n1_plus_n2_ipa"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="table-responsive">
+                            <h6 class="my-2 font-weight-bold text-primary">Perhitungan NCF, NSF dan Nilai Total Jurusan IPS
+                            </h6>
+                            <table class="table table-bordered" id="table_result" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>NCF Akademik</th>
+                                        <th>NSF Akademik</th>
+                                        <th>N1</th>
+                                        <th>NCF Non Akademik</th>
+                                        <th>NSF Non Akademik</th>
+                                        <th>N2</th>
+                                        <th>N1 + N2</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td id="ncf_akademik_ips"></td>
+                                        <td id="nsf_akademik_ips"></td>
+                                        <td id="n1_ips"></td>
+                                        <td id="ncf_non_akademik_ips"></td>
+                                        <td id="nsf_non_akademik_ips"></td>
+                                        <td id="n2_ips"></td>
+                                        <td id="n1_plus_n2_ips"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="table-responsive">
+                            <h6 class="my-2 font-weight-bold text-primary">Hasil Akhir
+                            </h6>
+                            <table class="table table-bordered" id="table_result" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Nilai IPA</th>
+                                        <th>Nilai IPS</th>
+                                        <th>Hasil</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td id="nilai_ipa_akhir"></td>
+                                        <td id="nilai_ips_akhir"></td>
+                                        <td id="kesimpulan"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">
@@ -416,11 +523,10 @@
                 </div>
             </div>
         </div>
-        <!-- End of Detail Proses Profile Matching Modal -->
+        <!-- End of detail Modal -->
 
         <!-- Logout Modal-->
-        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -464,7 +570,7 @@
         <script>
             function resetFormAndSelect2(formId, select2Id) {
                 $(formId)[0].reset(); // Reset semua elemen form
-                setTimeout(function () {
+                setTimeout(function() {
                     $(select2Id).val(null).trigger('change'); // Reset nilai Select2
                 }, 0);
             }
@@ -480,7 +586,7 @@
                 $('#minat_ortu').val('');
             }
 
-            $(document).ready(function () {
+            $(document).ready(function() {
                 // tbl_siswa();
 
                 // $("#detailModal").modal('show');
@@ -489,7 +595,7 @@
                     theme: "bootstrap4",
                 });
 
-                $("#form-profile").on("submit", function (e) {
+                $("#form-profile").on("submit", function(e) {
                     e.preventDefault();
 
                     var formData = new FormData(this);
@@ -503,7 +609,7 @@
                         processData: false,
                         contentType: false,
                         dataType: "json",
-                        success: function (response) {
+                        success: function(response) {
                             if (response.status == "success") {
 
                                 console.log(response.data);
@@ -528,7 +634,7 @@
                                 });
                             }
                         },
-                        error: function (xhr, status, error) {
+                        error: function(xhr, status, error) {
                             var errorMessage = xhr.responseJSON ? xhr.responseJSON.message :
                                 "Terjadi kesalahan saat memproses permintaan.";
                             $('#loading').hide();
@@ -543,7 +649,7 @@
                 });
             });
 
-            $(document).on("click", "#btn-lihat", function () {
+            $(document).on("click", "#btn-lihat", function() {
                 const id = $(this).data("id");
 
                 $.ajax({
@@ -553,23 +659,83 @@
                     },
                     method: "POST",
                     dataType: "JSON",
-                    success: function (data) {
+                    success: function(data) {
                         console.log(data.ppdb);
 
                         $("#resultModal").modal("hide");
                         $("#detailModal").modal("show");
+
+                        $("#nis2").html(data.nis);
+                        $("#nama_siswa2").html(data.nama_siswa);
+                        $("#kelas2").html(data.kelas);
+                        $("#tahun_ajaran2").html(data.tahun_ajaran);
 
                         $("#nilai_ppdb").html(data.ppdb);
                         $("#nilai_ipa").html(data.ipa);
                         $("#nilai_ips").html(data.ips);
                         $("#nilai_mtk").html(data.mtk);
                         $("#nilai_bindo").html(data.bindo);
-                        $("#nilai_psikotes").html(data.psikotes);
-                        $("#nilai_minat_siswa").html(data.minat_siswa);
-                        $("#nilai_minat_orang_tua").html(data.minat_ortu);
+
+                        if (data.psikotes == 5) {
+                            $("#nilai_psikotes").html("IPA");
+                        } else if (data.psikotes == 4) {
+                            $("#nilai_psikotes").html("IPA/IPS");
+                        } else if (data.psikotes == 3) {
+                            $("#nilai_psikotes").html("IPS/IPA");
+                        } else if (data.psikotes == 2) {
+                            $("#nilai_psikotes").html("IPS");
+                        }
+
+                        if (data.minat_siswa == 5) {
+                            $("#nilai_minat_siswa").html("IPA");
+                        } else {
+                            $("#nilai_minat_siswa").html("IPS");
+                        }
+
+                        if (data.minat_ortu == 5) {
+                            $("#nilai_minat_orang_tua").html("IPA");
+                        } else if (data.minat_ortu == 2) {
+                            $("#nilai_minat_orang_tua").html("IPS");
+                        } else {
+                            $("#nilai_minat_orang_tua").html("TRS");
+                        }
+
+                        $("#normalisasi_ppdb").html(data.nilai_ppdb);
+                        $("#normalisasi_ipa").html(data.nilai_ipa);
+                        $("#normalisasi_ips").html(data.nilai_ips);
+                        $("#normalisasi_mtk").html(data.nilai_mtk);
+                        $("#normalisasi_bindo").html(data.nilai_bindo);
+                        $("#normalisasi_psikotes").html(data.nilai_psikotes);
+                        $("#normalisasi_minat_siswa").html(data.nilai_minat_siswa);
+                        $("#normalisasi_minat_orang_tua").html(data.nilai_minat_ortu);
+
+                        $("#ncf_akademik_ipa").html(data.ncf_akademik_ipa);
+                        $("#nsf_akademik_ipa").html(data.nsf_akademik_ipa);
+                        $("#n1_ipa").html(data.n1_ipa);
+                        $("#ncf_non_akademik_ipa").html(data.ncf_nonakademik_ipa);
+                        $("#nsf_non_akademik_ipa").html(data.nsf_nonakademik_ipa);
+                        $("#n2_ipa").html(data.n2_ipa);
+                        $("#n1_plus_n2_ipa").html(data.n_total_ipa);
+
+                        $("#ncf_akademik_ips").html(data.ncf_akademik_ips);
+                        $("#nsf_akademik_ips").html(data.nsf_akademik_ips);
+                        $("#n1_ips").html(data.n1_ips);
+                        $("#ncf_non_akademik_ips").html(data.ncf_nonakademik_ips);
+                        $("#nsf_non_akademik_ips").html(data.nsf_nonakademik_ips);
+                        $("#n2_ips").html(data.n2_ips);
+                        $("#n1_plus_n2_ips").html(data.n_total_ips);
+
+                        $("#nilai_ipa_akhir").html(data.n_total_ipa);
+                        $("#nilai_ips_akhir").html(data.n_total_ips);
+
+                        if (data.n_total_ipa > data.n_total_ips) {
+                            $("#kesimpulan").html("IPA");
+                        } else {
+                            $("#kesimpulan").html("IPS");
+                        }
 
                     },
-                    error: function (xhr, status, error) {
+                    error: function(xhr, status, error) {
                         // Tangani error dan tampilkan pesan kesalahan yang sesuai
                         var errorMessage = xhr.responseJSON ? xhr.responseJSON.message :
                             "Terjadi kesalahan saat memproses permintaan.";
@@ -581,7 +747,7 @@
                 })
             })
 
-            $(document).on("click", "#btn-edit", function () {
+            $(document).on("click", "#btn-edit", function() {
                 const id = $(this).data("id");
 
                 $.ajax({
@@ -591,7 +757,7 @@
                     },
                     method: "post",
                     dataType: "json",
-                    success: function (data) {
+                    success: function(data) {
                         $("#siswaModal").modal("show");
                         $("#ModalLabel").html("Edit Data Siswa");
                         $(".modal-header").addClass("bg-info");
@@ -612,13 +778,13 @@
                         );
                         $("#action").val("edit");
                     },
-                    error: function (data) {
+                    error: function(data) {
                         alert("Error");
                     },
                 });
             });
 
-            $(document).on("click", "#btn-hapus", function () {
+            $(document).on("click", "#btn-hapus", function() {
                 const id = $(this).data("id");
 
                 var tableSiswa = $("#tblSiswa").DataTable();
@@ -640,7 +806,7 @@
                                 id: id,
                             },
                             dataType: "json",
-                            success: function (response) {
+                            success: function(response) {
                                 if (response.success) {
                                     // Tampilkan pesan sukses atau lakukan tindakan lainnya
                                     Toast.fire({

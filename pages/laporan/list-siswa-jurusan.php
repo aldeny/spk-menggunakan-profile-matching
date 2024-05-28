@@ -32,18 +32,16 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'
             'jurusan' => $jurusan,
             'n_total_ipa' => $row['n_total_ipa'],
             'n_total_ips' => $row['n_total_ips'],
-            'aksi' => '<a href="javascript:void(0)" id="btn-edit" class="btn btn-sm btn-outline-warning btn-sm mr-2" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Edit" data-id="' . $row['id'] . '"><i class="fas fa-edit"></i></a>'.
-            '<a href="javascript:void(0)" id="btn-detail" class="btn btn-sm btn-outline-info btn-sm mr-2" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Detail" data-id="' . $row['students_id'] . '"><i class="fas fa-eye"></i></a>'.
-            '<a href="javascript:void(0)" id="btn-hapus" class="btn btn-sm btn-outline-danger btn-sm mr-2" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Hapus" data-id="' . $row['students_id'] . '"><i class="fas fa-trash"></i></a>'
-            
+            'aksi' => '<a href="javascript:void(0)" id="btn-detail" class="btn btn-sm btn-outline-info btn-sm mr-2" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Detail" data-id="' . $row['students_id'] . '"><i class="fas fa-eye"></i></a>' .
+                '<a href="javascript:void(0)" id="btn-hapus" class="btn btn-sm btn-outline-danger btn-sm mr-2" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Hapus" data-id="' . $row['students_id'] . '"><i class="fas fa-trash"></i></a>'
+
         );
     }
 
     // Mengirimkan data dalam format JSON
     header('Content-Type: application/json');
     echo json_encode(array('data' => $data));
-}
-else {
+} else {
     // Jika tidak ada permintaan Ajax, tampilkan halaman dengan data siswa
     $students = array();
     while ($row = mysqli_fetch_assoc($query)) {
@@ -54,5 +52,3 @@ else {
 
 // Menutup koneksi
 mysqli_close($konek);
-
-?>

@@ -1,11 +1,11 @@
 <?php
-    session_start();
+session_start();
 
-    // Check if user is not logged in, redirect to login page
-    if (!isset($_SESSION['username'])) {
-        header("Location: ../index.php");
-        exit();
-    }
+// Check if user is not logged in, redirect to login page
+if (!isset($_SESSION['username'])) {
+    header("Location: ../index.php");
+    exit();
+}
 
 ?>
 <!DOCTYPE html>
@@ -22,9 +22,7 @@
 
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
 
     <!-- Custom styles for this template-->
     <link href="../css/sb-admin-2.min.css" rel="stylesheet" />
@@ -64,8 +62,7 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#master" aria-expanded="true"
-                    aria-controls="master">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#master" aria-expanded="true" aria-controls="master">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Data Master</span>
                 </a>
@@ -130,15 +127,12 @@
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span
-                                    class="mr-2 d-none d-lg-inline text-gray-600 small text-capitalize"><?php echo $_SESSION['username']; ?></span>
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small text-capitalize"><?php echo $_SESSION['username']; ?></span>
                                 <img class="img-profile rounded-circle" src="../img/undraw_profile.svg" />
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
@@ -177,7 +171,7 @@
                     $result = mysqli_query($konek, $sql);
 
                     $total = mysqli_num_rows($result);
-                    
+
                     ?>
 
                     <!-- Content Row -->
@@ -191,10 +185,10 @@
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Total Siswa Terdaftar
                                             </div>
-                                            <div class="h5 mb-4 font-weight-bold text-gray-800">
+                                            <div class="h2 mb-4 font-weight-bold text-gray-800">
                                                 <?php echo $total ?>
                                             </div>
-                                            <a href="#" class="btn btn-sm btn-primary">Cek Detail</a>
+                                            <a href="siswa/siswa.php" class="btn btn-sm btn-primary">Cek Detail</a>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-user-graduate fa-2x text-gray-300"></i>
@@ -204,10 +198,10 @@
                             </div>
                         </div>
 
-                        <?php 
-                            include '../config/koneksi.php';
+                        <?php
+                        include '../config/koneksi.php';
 
-                            $sql = "SELECT 
+                        $sql = "SELECT 
                                         COUNT(*) AS jumlah_ipa
                                     FROM 
                                         `profile_matching` AS pm
@@ -215,9 +209,9 @@
                                         pm.n_total_ipa > pm.n_total_ips;
                                     ";
 
-                            $result = mysqli_query($konek, $sql);
+                        $result = mysqli_query($konek, $sql);
 
-                            $total = mysqli_fetch_assoc($result);
+                        $total = mysqli_fetch_assoc($result);
                         ?>
 
                         <!-- Earnings (Monthly) Card Example -->
@@ -229,10 +223,10 @@
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                 Total Siswa IPA
                                             </div>
-                                            <div class="h5 mb-4 font-weight-bold text-gray-800">
+                                            <div class="h2 mb-4 font-weight-bold text-gray-800">
                                                 <?php echo $total['jumlah_ipa'] ?>
                                             </div>
-                                            <a href="#" class="btn btn-sm btn-success">Cek Detail</a>
+                                            <!-- <a href="#" class="btn btn-sm btn-success">Cek Detail</a> -->
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-microscope fa-2x text-gray-300"></i>
@@ -242,10 +236,10 @@
                             </div>
                         </div>
 
-                        <?php 
-                            include '../config/koneksi.php';
+                        <?php
+                        include '../config/koneksi.php';
 
-                            $sql = "SELECT 
+                        $sql = "SELECT 
                                         COUNT(*) AS jumlah_ips
                                     FROM 
                                         `profile_matching` AS pm
@@ -253,9 +247,9 @@
                                         pm.n_total_ipa < pm.n_total_ips;
                                     ";
 
-                            $result = mysqli_query($konek, $sql);
+                        $result = mysqli_query($konek, $sql);
 
-                            $total = mysqli_fetch_assoc($result);
+                        $total = mysqli_fetch_assoc($result);
                         ?>
 
                         <!-- Earnings (Monthly) Card Example -->
@@ -267,10 +261,10 @@
                                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                                                 Total Siswa IPS
                                             </div>
-                                            <div class="h5 mb-4 font-weight-bold text-gray-800">
+                                            <div class="h2 mb-4 font-weight-bold text-gray-800">
                                                 <?php echo $total['jumlah_ips'] ?>
                                             </div>
-                                            <a href="#" class="btn btn-sm btn-info">Cek Detail</a>
+                                            <!-- <a href="#" class="btn btn-sm btn-info">Cek Detail</a> -->
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-people-arrows fa-2x text-gray-300"></i>
@@ -342,8 +336,7 @@
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -390,7 +383,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.8/dist/sweetalert2.all.min.js"></script>
 
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             tbl_pm_siswa();
         })
 
@@ -404,7 +397,7 @@
                 columns: [{
                         data: null,
                         sortable: false,
-                        render: function (data, type, row, meta) {
+                        render: function(data, type, row, meta) {
                             return meta.row + meta.settings._iDisplayStart + 1;
                         },
                     },
