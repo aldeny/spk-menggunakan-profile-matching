@@ -143,10 +143,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             //untuk minat ortu
             if ($minat_ortu == $minat) {
                 $mnt_ortu = 5;
-            } elseif ($minat_ortu != $minat) {
-                $mnt_ortu = 2;
             } elseif ($minat_ortu == 'TRS') {
                 $mnt_ortu = 1;
+            } elseif ($minat_ortu != $minat) {
+                $mnt_ortu = 2;
             }
 
             $save_nilai_score = "INSERT INTO scoring (students_id, nilai_ppdb, nilai_ipa, nilai_ips, nilai_mtk, nilai_bindo, nilai_psikotes, nilai_minat_siswa, nilai_minat_ortu) VALUES ('$id_siswa', '$ppdb', '$ipa', '$ips', '$mtk', '$bindo', '$psi', '$mnt', '$mnt_ortu')";
