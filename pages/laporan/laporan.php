@@ -563,29 +563,11 @@ if (!isset($_SESSION['username'])) {
                     $("#nilai_mtk").html(data.mtk);
                     $("#nilai_bindo").html(data.bindo);
 
-                    if (data.psikotes == 5) {
-                        $("#nilai_psikotes").html("IPA");
-                    } else if (data.psikotes == 4) {
-                        $("#nilai_psikotes").html("IPA/IPS");
-                    } else if (data.psikotes == 3) {
-                        $("#nilai_psikotes").html("IPS/IPA");
-                    } else if (data.psikotes == 2) {
-                        $("#nilai_psikotes").html("IPS");
-                    }
+                    $("#nilai_psikotes").html(data.psikotes);
 
-                    if (data.minat_siswa == 5) {
-                        $("#nilai_minat_siswa").html("IPA");
-                    } else {
-                        $("#nilai_minat_siswa").html("IPS");
-                    }
+                    $("#nilai_minat_siswa").html(data.minat_siswa);
 
-                    if (data.minat_ortu == 5) {
-                        $("#nilai_minat_orang_tua").html("IPA");
-                    } else if (data.minat_ortu == 2) {
-                        $("#nilai_minat_orang_tua").html("IPS");
-                    } else {
-                        $("#nilai_minat_orang_tua").html("TRS");
-                    }
+                    $("#nilai_minat_orang_tua").html(data.minat_ortu);
 
                     $("#normalisasi_ppdb").html(data.nilai_ppdb);
                     $("#normalisasi_ipa").html(data.nilai_ipa);

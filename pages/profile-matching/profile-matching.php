@@ -234,10 +234,10 @@ if (!isset($_SESSION['username'])) {
                                             <label for="psikotes">Nilai Psikotes</label>
                                             <select class="form-control" id="psikotes" name="psikotes" placeholder="ex: 90" required>
                                                 <option value="" selected disabled>-- Pilih Nilai --</option>
-                                                <option value="5">Bernilai IPA</option>
-                                                <option value="4">Bernilai IPA/IPS</option>
-                                                <option value="3">Bernilai IPS/IPA</option>
-                                                <option value="2">Bernilai IPS</option>
+                                                <option value="IPA">Bernilai IPA</option>
+                                                <option value="IPA/IPS">Bernilai IPA/IPS</option>
+                                                <option value="IPS/IPA">Bernilai IPS/IPA</option>
+                                                <option value="IPS">Bernilai IPS</option>
                                             </select>
                                         </div>
                                     </div>
@@ -248,8 +248,8 @@ if (!isset($_SESSION['username'])) {
                                             <label for="minat">Nilai Minat Siswa</label>
                                             <select class="form-control" id="minat" name="minat" placeholder="ex: 90" required>
                                                 <option value="" selected disabled>-- Pilih Nilai --</option>
-                                                <option value="5">Jika == Psikotes</option>
-                                                <option value="2">Jika != Psikotes</option>
+                                                <option value="IPA">IPA</option>
+                                                <option value="IPS">IPS</option>
                                             </select>
                                         </div>
                                     </div>
@@ -258,9 +258,9 @@ if (!isset($_SESSION['username'])) {
                                             <label for="minat_ortu">Nilai Minat Orang Tua</label>
                                             <select class="form-control" id="minat_ortu" name="minat_ortu" placeholder="ex: 90" required>
                                                 <option value="" selected disabled>-- Pilih Nilai --</option>
-                                                <option value="5">Jika == Siswa</option>
-                                                <option value="2">Jika != Psikotes</option>
-                                                <option value="1">Jika Terserah</option>
+                                                <option value="IPA">IPA</option>
+                                                <option value="IPS">IPS</option>
+                                                <option value="TRS">Terserah</option>
                                             </select>
                                         </div>
                                     </div>
@@ -685,29 +685,11 @@ if (!isset($_SESSION['username'])) {
                         $("#nilai_mtk").html(data.mtk);
                         $("#nilai_bindo").html(data.bindo);
 
-                        if (data.psikotes == 5) {
-                            $("#nilai_psikotes").html("IPA");
-                        } else if (data.psikotes == 4) {
-                            $("#nilai_psikotes").html("IPA/IPS");
-                        } else if (data.psikotes == 3) {
-                            $("#nilai_psikotes").html("IPS/IPA");
-                        } else if (data.psikotes == 2) {
-                            $("#nilai_psikotes").html("IPS");
-                        }
+                        $("#nilai_psikotes").html(data.psikotes);
 
-                        if (data.minat_siswa == 5) {
-                            $("#nilai_minat_siswa").html("IPA");
-                        } else {
-                            $("#nilai_minat_siswa").html("IPS");
-                        }
+                        $("#nilai_minat_siswa").html(data.minat_siswa);
 
-                        if (data.minat_ortu == 5) {
-                            $("#nilai_minat_orang_tua").html("IPA");
-                        } else if (data.minat_ortu == 2) {
-                            $("#nilai_minat_orang_tua").html("IPS");
-                        } else {
-                            $("#nilai_minat_orang_tua").html("TRS");
-                        }
+                        $("#nilai_minat_orang_tua").html(data.minat_ortu);
 
                         $("#normalisasi_ppdb").html(data.nilai_ppdb);
                         $("#normalisasi_ipa").html(data.nilai_ipa);
