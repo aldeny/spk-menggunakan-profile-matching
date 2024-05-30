@@ -105,9 +105,9 @@ CREATE TABLE `nilai_murni` (
   `ips` float(6,2) NOT NULL,
   `mtk` float(6,2) NOT NULL,
   `bindo` float(6,2) NOT NULL,
-  `psikotes` float(6,2) NOT NULL,
-  `minat_siswa` float(6,2) NOT NULL,
-  `minat_ortu` float(6,2) NOT NULL
+  `psikotes` varchar(20) NOT NULL,
+  `minat_siswa` varchar(20) NOT NULL,
+  `minat_ortu` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
