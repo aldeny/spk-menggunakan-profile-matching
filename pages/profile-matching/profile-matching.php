@@ -26,9 +26,7 @@ if (!isset($_SESSION['username'])) {
 
     <!-- Custom fonts for this template-->
     <link href="../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
 
     <!-- Custom styles for this template-->
     <link href="../../css/sb-admin-2.min.css" rel="stylesheet" />
@@ -73,8 +71,7 @@ if (!isset($_SESSION['username'])) {
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#master" aria-expanded="true"
-                    aria-controls="master">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#master" aria-expanded="true" aria-controls="master">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Data Master</span>
                 </a>
@@ -111,6 +108,26 @@ if (!isset($_SESSION['username'])) {
                     <i class="fas fa-fw fa-chart-bar"></i>
                     <span>Laporan Profile Matching</span></a>
             </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block" />
+
+            <!-- Heading -->
+            <div class="sidebar-heading">Account</div>
+
+            <li class="nav-item">
+                <a class="nav-link" href="../user/user.php">
+                    <i class="fas fa-fw fa-user"></i>
+                    <span>Users</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block" />
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
         </ul>
         <!-- End of Sidebar -->
 
@@ -130,15 +147,12 @@ if (!isset($_SESSION['username'])) {
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span
-                                    class="mr-2 d-none d-lg-inline text-gray-600 small text-capitalize"><?php echo $_SESSION['username']; ?></span>
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small text-capitalize"><?php echo $_SESSION['username']; ?></span>
                                 <img class="img-profile rounded-circle" src="../../img/undraw_profile.svg" />
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
@@ -171,8 +185,8 @@ if (!isset($_SESSION['username'])) {
 
                                         while ($data = mysqli_fetch_array($query)) {
                                         ?>
-                                        <option value="<?= $data['id'] ?>"><?= $data['nis'] ?> -
-                                            <?= $data['nama_siswa'] ?></option>
+                                            <option value="<?= $data['id'] ?>"><?= $data['nis'] ?> -
+                                                <?= $data['nama_siswa'] ?></option>
                                         <?php
                                         }
                                         ?>
@@ -184,15 +198,13 @@ if (!isset($_SESSION['username'])) {
                                             <label for="ppdb">Nilai PPDB</label>
                                             <input type="hidden" id="id" name="id">
                                             <input type="hidden" id="action" name="action">
-                                            <input type="number" class="form-control" id="ppdb" name="ppdb"
-                                                placeholder="ex: 90" required step="0.01">
+                                            <input type="number" class="form-control" id="ppdb" name="ppdb" placeholder="ex: 90" required step="0.01">
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="ipa">Nilai IPA</label>
-                                            <input type="number" class="form-control" id="ipa" name="ipa"
-                                                placeholder="ex: 90" required step="0.01">
+                                            <input type="number" class="form-control" id="ipa" name="ipa" placeholder="ex: 90" required step="0.01">
                                         </div>
                                     </div>
                                 </div>
@@ -200,15 +212,13 @@ if (!isset($_SESSION['username'])) {
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="ips">Nilai IPS</label>
-                                            <input type="number" class="form-control" id="ips" name="ips"
-                                                placeholder="ex: 90" required step="0.01">
+                                            <input type="number" class="form-control" id="ips" name="ips" placeholder="ex: 90" required step="0.01">
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="mtk">Nilai MTK</label>
-                                            <input type="number" class="form-control" id="mtk" name="mtk"
-                                                placeholder="ex: 90" required step="0.01">
+                                            <input type="number" class="form-control" id="mtk" name="mtk" placeholder="ex: 90" required step="0.01">
                                         </div>
                                     </div>
                                 </div>
@@ -216,15 +226,13 @@ if (!isset($_SESSION['username'])) {
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="bindo">Nilai B.Indonesia</label>
-                                            <input type="number" class="form-control" id="bindo" name="bindo"
-                                                placeholder="ex: 90" required step="0.01">
+                                            <input type="number" class="form-control" id="bindo" name="bindo" placeholder="ex: 90" required step="0.01">
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="psikotes">Nilai Psikotes</label>
-                                            <select class="form-control" id="psikotes" name="psikotes"
-                                                placeholder="ex: 90" required>
+                                            <select class="form-control" id="psikotes" name="psikotes" placeholder="ex: 90" required>
                                                 <option value="" selected disabled>-- Pilih Nilai --</option>
                                                 <option value="5">Bernilai IPA</option>
                                                 <option value="4">Bernilai IPA/IPS</option>
@@ -238,8 +246,7 @@ if (!isset($_SESSION['username'])) {
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="minat">Nilai Minat Siswa</label>
-                                            <select class="form-control" id="minat" name="minat" placeholder="ex: 90"
-                                                required>
+                                            <select class="form-control" id="minat" name="minat" placeholder="ex: 90" required>
                                                 <option value="" selected disabled>-- Pilih Nilai --</option>
                                                 <option value="5">Jika == Psikotes</option>
                                                 <option value="2">Jika != Psikotes</option>
@@ -249,8 +256,7 @@ if (!isset($_SESSION['username'])) {
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="minat_ortu">Nilai Minat Orang Tua</label>
-                                            <select class="form-control" id="minat_ortu" name="minat_ortu"
-                                                placeholder="ex: 90" required>
+                                            <select class="form-control" id="minat_ortu" name="minat_ortu" placeholder="ex: 90" required>
                                                 <option value="" selected disabled>-- Pilih Nilai --</option>
                                                 <option value="5">Jika == Siswa</option>
                                                 <option value="2">Jika != Psikotes</option>
@@ -291,8 +297,7 @@ if (!isset($_SESSION['username'])) {
         </a>
 
         <!-- Result Modal -->
-        <div class="modal fade" id="resultModal" data-backdrop="static" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="resultModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header bg-success">
@@ -343,8 +348,7 @@ if (!isset($_SESSION['username'])) {
         <!-- End of Result Modal -->
 
         <!-- detail Modal -->
-        <div class="modal fade" id="detailModal" data-backdrop="static" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="detailModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
                 <div class="modal-content">
                     <div class="modal-header bg-info">
@@ -531,8 +535,7 @@ if (!isset($_SESSION['username'])) {
         <!-- End of detail Modal -->
 
         <!-- Logout Modal-->
-        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header bg-danger">
@@ -548,8 +551,7 @@ if (!isset($_SESSION['username'])) {
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">
                             Cancel
                         </button>
-                        <a class="btn btn-danger" href="../auth/logout.php">Logout <i
-                                class="fas fa-sign-out-alt"></i></a>
+                        <a class="btn btn-danger" href="../auth/logout.php">Logout <i class="fas fa-sign-out-alt"></i></a>
                     </div>
                 </div>
             </div>
@@ -577,7 +579,7 @@ if (!isset($_SESSION['username'])) {
         <script>
             function resetFormAndSelect2(formId, select2Id) {
                 $(formId)[0].reset(); // Reset semua elemen form
-                setTimeout(function () {
+                setTimeout(function() {
                     $(select2Id).val(null).trigger('change'); // Reset nilai Select2
                 }, 0);
             }
@@ -593,7 +595,7 @@ if (!isset($_SESSION['username'])) {
                 $('#minat_ortu').val('');
             }
 
-            $(document).ready(function () {
+            $(document).ready(function() {
                 // tbl_siswa();
 
                 // $("#detailModal").modal('show');
@@ -602,7 +604,7 @@ if (!isset($_SESSION['username'])) {
                     theme: "bootstrap4",
                 });
 
-                $("#form-profile").on("submit", function (e) {
+                $("#form-profile").on("submit", function(e) {
                     e.preventDefault();
 
                     var formData = new FormData(this);
@@ -616,7 +618,7 @@ if (!isset($_SESSION['username'])) {
                         processData: false,
                         contentType: false,
                         dataType: "json",
-                        success: function (response) {
+                        success: function(response) {
                             if (response.status == "success") {
 
                                 console.log(response.data);
@@ -641,7 +643,7 @@ if (!isset($_SESSION['username'])) {
                                 });
                             }
                         },
-                        error: function (xhr, status, error) {
+                        error: function(xhr, status, error) {
                             var errorMessage = xhr.responseJSON ? xhr.responseJSON.message :
                                 "Terjadi kesalahan saat memproses permintaan.";
                             $('#loading').hide();
@@ -656,7 +658,7 @@ if (!isset($_SESSION['username'])) {
                 });
             });
 
-            $(document).on("click", "#btn-lihat", function () {
+            $(document).on("click", "#btn-lihat", function() {
                 const id = $(this).data("id");
 
                 $.ajax({
@@ -666,7 +668,7 @@ if (!isset($_SESSION['username'])) {
                     },
                     method: "POST",
                     dataType: "JSON",
-                    success: function (data) {
+                    success: function(data) {
                         console.log(data.ppdb);
 
                         $("#resultModal").modal("hide");
@@ -742,7 +744,7 @@ if (!isset($_SESSION['username'])) {
                         }
 
                     },
-                    error: function (xhr, status, error) {
+                    error: function(xhr, status, error) {
                         // Tangani error dan tampilkan pesan kesalahan yang sesuai
                         var errorMessage = xhr.responseJSON ? xhr.responseJSON.message :
                             "Terjadi kesalahan saat memproses permintaan.";
@@ -754,7 +756,7 @@ if (!isset($_SESSION['username'])) {
                 })
             })
 
-            $(document).on("click", "#btn-edit", function () {
+            $(document).on("click", "#btn-edit", function() {
                 const id = $(this).data("id");
 
                 $.ajax({
@@ -764,7 +766,7 @@ if (!isset($_SESSION['username'])) {
                     },
                     method: "post",
                     dataType: "json",
-                    success: function (data) {
+                    success: function(data) {
                         $("#siswaModal").modal("show");
                         $("#ModalLabel").html("Edit Data Siswa");
                         $(".modal-header").addClass("bg-info");
@@ -785,13 +787,13 @@ if (!isset($_SESSION['username'])) {
                         );
                         $("#action").val("edit");
                     },
-                    error: function (data) {
+                    error: function(data) {
                         alert("Error");
                     },
                 });
             });
 
-            $(document).on("click", "#btn-hapus", function () {
+            $(document).on("click", "#btn-hapus", function() {
                 const id = $(this).data("id");
 
                 var tableSiswa = $("#tblSiswa").DataTable();
@@ -813,7 +815,7 @@ if (!isset($_SESSION['username'])) {
                                 id: id,
                             },
                             dataType: "json",
-                            success: function (response) {
+                            success: function(response) {
                                 if (response.success) {
                                     // Tampilkan pesan sukses atau lakukan tindakan lainnya
                                     Toast.fire({

@@ -108,6 +108,26 @@ if (!isset($_SESSION['username'])) {
                     <i class="fas fa-fw fa-chart-bar"></i>
                     <span>Laporan Profile Matching</span></a>
             </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block" />
+
+            <!-- Heading -->
+            <div class="sidebar-heading">Account</div>
+
+            <li class="nav-item">
+                <a class="nav-link" href="../user/user.php">
+                    <i class="fas fa-fw fa-user"></i>
+                    <span>Users</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block" />
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
         </ul>
         <!-- End of Sidebar -->
 

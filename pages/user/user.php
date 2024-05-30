@@ -74,7 +74,7 @@ if (!isset($_SESSION['username'])) {
                 <div id="master" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Settings Data Master:</h6>
-                        <a class="collapse-item" href="kriteria.php">Kriteria</a>
+                        <a class="collapse-item" href="../kriteria/kriteria.php">Kriteria</a>
                         <a class="collapse-item" href="../sub-kriteria/sub-kriteria.php">Sub Kriteria</a>
                         <a class="collapse-item" href="../target/target.php">Nilai Target</a>
                     </div>

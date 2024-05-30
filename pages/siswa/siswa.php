@@ -101,6 +101,26 @@ if (!isset($_SESSION['username'])) {
                     <i class="fas fa-fw fa-chart-bar"></i>
                     <span>Laporan Profile Matching</span></a>
             </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block" />
+
+            <!-- Heading -->
+            <div class="sidebar-heading">Account</div>
+
+            <li class="nav-item">
+                <a class="nav-link" href="../user/user.php">
+                    <i class="fas fa-fw fa-user"></i>
+                    <span>Users</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block" />
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
         </ul>
         <!-- End of Sidebar -->
 
@@ -339,13 +359,13 @@ if (!isset($_SESSION['username'])) {
                         <option value="XD">XD</option>
                         <option value="XE">XE</option>`);
             $("#jenis_kelamin").html(`<option selected disabled>Pilih Jenis Kelamin</option>
-          <option value="Laki-Laki">Laki-Laki</option>
-          <option value="Perempuan">Perempuan</option>`);
-            $("#tahun_ajaran").html(
-                '<option selected disabled>Pilih Tahun Ajaran</option><?php $now = date("Y");
-                                                                        for ($i = 2021; $i <= $now; $i++) {
-                                                                            echo "<option value=\'$i\'>$i</option>";
-                                                                        } ?>'
+                <option value="Laki-Laki">Laki-Laki</option>
+                <option value="Perempuan">Perempuan</option>`);
+            $("#tahun_ajaran").html('<option selected disabled>Pilih Tahun Ajaran</option>' +
+                '<?php $now = date("Y");
+                    for ($i = 2021; $i <= $now; $i++) {
+                        echo "<option value=\'$i\'>$i</option>";
+                    } ?>'
             );
             $("#action").val("add");
         });

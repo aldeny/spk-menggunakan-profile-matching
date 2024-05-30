@@ -23,7 +23,9 @@ if (!isset($_SESSION['username'])) {
 
     <!-- Custom fonts for this template-->
     <link href="../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet" />
 
     <!-- Custom styles for this template-->
     <link href="../../css/sb-admin-2.min.css" rel="stylesheet" />
@@ -64,7 +66,8 @@ if (!isset($_SESSION['username'])) {
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item active">
-                <a class="nav-link" href="#" data-toggle="collapse" data-target="#master" aria-expanded="true" aria-controls="master">
+                <a class="nav-link" href="#" data-toggle="collapse" data-target="#master" aria-expanded="true"
+                    aria-controls="master">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Data Master</span>
                 </a>
@@ -105,6 +108,18 @@ if (!isset($_SESSION['username'])) {
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block" />
 
+            <!-- Heading -->
+            <div class="sidebar-heading">Account</div>
+
+            <li class="nav-item">
+                <a class="nav-link" href="../user/user.php">
+                    <i class="fas fa-fw fa-user"></i>
+                    <span>Users</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block" />
+
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
@@ -128,12 +143,15 @@ if (!isset($_SESSION['username'])) {
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small text-capitalize"><?php echo $_SESSION['username']; ?></span>
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span
+                                    class="mr-2 d-none d-lg-inline text-gray-600 small text-capitalize"><?php echo $_SESSION['username']; ?></span>
                                 <img class="img-profile rounded-circle" src="../../img/undraw_profile.svg" />
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
@@ -166,14 +184,17 @@ if (!isset($_SESSION['username'])) {
                                             <input type="hidden" id="id" name="id">
                                             <input type="hidden" id="action" name="action">
                                             <input type="hidden" id="kriteriaLama" name="kriteriaLama">
-                                            <input type="text" class="form-control" id="kriteria" name="kriteria" placeholder="Masukkan Kriteria" required>
+                                            <input type="text" class="form-control" id="kriteria" name="kriteria"
+                                                placeholder="Masukkan Kriteria" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="keterangan">Keterangan</label>
-                                            <textarea name="keterangan" id="keterangan" class="form-control" placeholder="Masukkan Keterangan" required></textarea>
+                                            <textarea name="keterangan" id="keterangan" class="form-control"
+                                                placeholder="Masukkan Keterangan" required></textarea>
                                         </div>
                                         <div>
-                                            <button type="submit" class="btn btn-primary" id="btnAdd"><i class="fas fa-save"></i> Simpan</button>
+                                            <button type="submit" class="btn btn-primary" id="btnAdd"><i
+                                                    class="fas fa-save"></i> Simpan</button>
                                             <button type="reset" class="btn btn-secondary" id="btnReset">Reset</button>
                                         </div>
                                     </form>
@@ -187,7 +208,8 @@ if (!isset($_SESSION['username'])) {
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered" id="tblKriteria" width="100%" cellspacing="0">
+                                        <table class="table table-bordered" id="tblKriteria" width="100%"
+                                            cellspacing="0">
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
@@ -235,7 +257,8 @@ if (!isset($_SESSION['username'])) {
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-danger">
@@ -295,10 +318,10 @@ if (!isset($_SESSION['username'])) {
             $("#action").val('');
         }
 
-        $(document).ready(function() {
+        $(document).ready(function () {
             tbl_kriteria();
 
-            $("#form-kriteria").on("submit", function(e) {
+            $("#form-kriteria").on("submit", function (e) {
                 e.preventDefault();
                 var formData = new FormData(this);
 
@@ -310,7 +333,7 @@ if (!isset($_SESSION['username'])) {
                         processData: false,
                         contentType: false,
                         dataType: "json",
-                        success: function(response) {
+                        success: function (response) {
                             if (response.status == "success") {
                                 Toast.fire({
                                     icon: "success",
@@ -328,7 +351,7 @@ if (!isset($_SESSION['username'])) {
                                 });
                             }
                         },
-                        error: function(xhr, status, error) {
+                        error: function (xhr, status, error) {
                             // Tangani error dan tampilkan pesan kesalahan yang sesuai
                             var errorMessage = xhr.responseJSON ? xhr.responseJSON.message :
                                 "Terjadi kesalahan saat memproses permintaan.";
@@ -346,7 +369,7 @@ if (!isset($_SESSION['username'])) {
                         processData: false,
                         contentType: false,
                         dataType: "json",
-                        success: function(response) {
+                        success: function (response) {
                             if (response.status == "success") {
                                 Toast.fire({
                                     icon: "success",
@@ -362,7 +385,7 @@ if (!isset($_SESSION['username'])) {
                                 });
                             }
                         },
-                        error: function(xhr, status, error) {
+                        error: function (xhr, status, error) {
                             // Tangani error dan tampilkan pesan kesalahan yang sesuai
                             var errorMessage = xhr.responseJSON ? xhr.responseJSON.message :
                                 "Terjadi kesalahan saat memproses permintaan.";
@@ -376,7 +399,7 @@ if (!isset($_SESSION['username'])) {
             });
         });
 
-        $(document).on("click", "#btn-edit", function() {
+        $(document).on("click", "#btn-edit", function () {
             const id = $(this).data("id");
 
             $.ajax({
@@ -386,20 +409,20 @@ if (!isset($_SESSION['username'])) {
                 },
                 method: "post",
                 dataType: "json",
-                success: function(data) {
+                success: function (data) {
                     $("#id").val(data.id);
                     $("#kriteria").val(data.nama_kriteria);
                     $("#kriteriaLama").val(data.nama_kriteria);
                     $("#keterangan").val(data.keterangan);
                     $("#action").val("edit");
                 },
-                error: function(data) {
+                error: function (data) {
                     alert("Error");
                 },
             });
         });
 
-        $(document).on("click", "#btn-hapus", function() {
+        $(document).on("click", "#btn-hapus", function () {
             const id = $(this).data("id");
 
             var tableSiswa = $("#tblKriteria").DataTable();
@@ -421,7 +444,7 @@ if (!isset($_SESSION['username'])) {
                             id: id,
                         },
                         dataType: "json",
-                        success: function(response) {
+                        success: function (response) {
                             if (response.status == "success") {
                                 // Tampilkan pesan sukses atau lakukan tindakan lainnya
                                 Toast.fire({
@@ -454,7 +477,7 @@ if (!isset($_SESSION['username'])) {
                 columns: [{
                         data: null,
                         sortable: false,
-                        render: function(data, type, row, meta) {
+                        render: function (data, type, row, meta) {
                             return meta.row + meta.settings._iDisplayStart + 1;
                         },
                     },
