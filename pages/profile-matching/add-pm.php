@@ -44,68 +44,68 @@
 
             if ($konek->query($save_nilai_murni) === TRUE) {
 
-                if ($ppdb >= 61 && $ppdb <= 100) {
+                if ($ppdb >= 60.01 && $ppdb <= 100.00) {
                     $ppdb = 5;
-                }elseif ($ppdb >= 56 && $ppdb <= 60) {
+                } elseif ($ppdb >= 55.01 && $ppdb <= 60.00) {
                     $ppdb = 4;
-                }elseif ($ppdb >= 51 && $ppdb <= 55) {
+                } elseif ($ppdb >= 50.01 && $ppdb <= 55.00) {
                     $ppdb = 3;
-                }elseif ($ppdb >= 46 && $ppdb <= 50) {
+                } elseif ($ppdb >= 45.01 && $ppdb <= 50.00) {
                     $ppdb = 2;
-                }elseif ($ppdb >= 0 && $ppdb <= 45) {
+                } elseif ($ppdb >= 0.00 && $ppdb <= 45.00) {
                     $ppdb = 1;
                 }
     
                 //kondisi untuk nilai ipa, ips, mtk, bindo
     
-                if ($ipa >= 94 && $ipa <= 100) {
+                if ($ipa >= 93.01 && $ipa <= 100.00) {
                     $ipa = 5;
-                } elseif ($ipa >= 88 && $ipa <= 93) {
+                } elseif ($ipa >= 87.01 && $ipa <= 93.00) {
                     $ipa = 4;
-                } elseif ($ipa >= 82 && $ipa <= 87) {
+                } elseif ($ipa >= 80.01 && $ipa <= 87.00) {
                     $ipa = 3;
-                } elseif ($ipa >= 76 && $ipa <= 81) {
+                } elseif ($ipa >= 75.01 && $ipa <= 81.00) {
                     $ipa = 2;
-                } elseif ($ipa >= 0 && $ipa <= 75) {
+                } elseif ($ipa >= 0.00 && $ipa <= 75.00) {
                     $ipa = 1;
                 }
     
                 // Untuk $ips
-                if ($ips >= 94 && $ips <= 100) {
+                if ($ips >= 93.01 && $ips <= 100.00) {
                     $ips = 5;
-                } elseif ($ips >= 88 && $ips <= 93) {
+                } elseif ($ips >= 87.01 && $ips <= 93.00) {
                     $ips = 4;
-                } elseif ($ips >= 82 && $ips <= 87) {
+                } elseif ($ips >= 81.01 && $ips <= 87.00) {
                     $ips = 3;
-                } elseif ($ips >= 76 && $ips <= 81) {
+                } elseif ($ips >= 75.01 && $ips <= 81.00) {
                     $ips = 2;
-                } elseif ($ips >= 0 && $ips <= 75) {
+                } elseif ($ips >= 0.00 && $ips <= 75.00) {
                     $ips = 1;
                 }
     
                 // Untuk $mtk
-                if ($mtk >= 94 && $mtk <= 100) {
+                if ($mtk >= 93.01 && $mtk <= 100.00) {
                     $mtk = 5;
-                } elseif ($mtk >= 88 && $mtk <= 93) {
+                } elseif ($mtk >= 87.01 && $mtk <= 93.00) {
                     $mtk = 4;
-                } elseif ($mtk >= 82 && $mtk <= 87) {
+                } elseif ($mtk >= 81.01 && $mtk <= 87.00) {
                     $mtk = 3;
-                } elseif ($mtk >= 76 && $mtk <= 81) {
+                } elseif ($mtk >= 75.01 && $mtk <= 81.00) {
                     $mtk = 2;
-                } elseif ($mtk >= 0 && $mtk <= 75) {
+                } elseif ($mtk >= 0.00 && $mtk <= 75.00) {
                     $mtk = 1;
                 }
     
                 // Untuk $bindo
-                if ($bindo >= 94 && $bindo <= 100) {
+                if ($bindo >= 93.01 && $bindo <= 100.00) {
                     $bindo = 5;
-                } elseif ($bindo >= 88 && $bindo <= 93) {
+                } elseif ($bindo >= 87.01 && $bindo <= 93.00) {
                     $bindo = 4;
-                } elseif ($bindo >= 82 && $bindo <= 87) {
+                } elseif ($bindo >= 81.01 && $bindo <= 87.00) {
                     $bindo = 3;
-                } elseif ($bindo >= 76 && $bindo <= 81) {
+                } elseif ($bindo >= 75.01 && $bindo <= 81.00) {
                     $bindo = 2;
-                } elseif ($bindo >= 0 && $bindo <= 75) {
+                } elseif ($bindo >= 0.00 && $bindo <= 75.00) {
                     $bindo = 1;
                 }
 

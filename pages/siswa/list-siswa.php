@@ -4,7 +4,7 @@
 include '../../config/koneksi.php';
 
 // Query untuk mengambil data siswa
-$sql = "SELECT * FROM students";
+$sql = "SELECT * FROM students ORDER BY id DESC";
 $query = mysqli_query($konek, $sql);
 
 // Memeriksa jika query berhasil dieksekusi
