@@ -621,7 +621,7 @@ if (!isset($_SESSION['username'])) {
                         success: function(response) {
                             if (response.status == "success") {
 
-                                console.log(response.data);
+                                // console.log(response.data.id_siswa);
 
                                 $("#resultModal").modal('show');
                                 $("#nis").html(response.data.nis);
@@ -630,7 +630,9 @@ if (!isset($_SESSION['username'])) {
                                 $("#tahun_ajaran").html(response.data.tahun_ajaran);
                                 $("#hasil_jurusan").html(response.data.jurusan);
 
-                                $("#btn-lihat").attr("data-id", response.data.id_siswa);
+                                $("#btn-lihat").data("id", response.data.id_siswa);
+                                // let test = $("#btn-lihat").data("id");
+                                // console.log(test);
 
                                 $('#loading').hide();
                                 resetForm();
@@ -659,7 +661,7 @@ if (!isset($_SESSION['username'])) {
             });
 
             $(document).on("click", "#btn-lihat", function() {
-                const id = $(this).data("id");
+                let id = $(this).data("id");
 
                 $.ajax({
                     url: "detail-pmById.php?id=" + id,
@@ -724,6 +726,8 @@ if (!isset($_SESSION['username'])) {
                         } else {
                             $("#kesimpulan").html("IPS");
                         }
+
+                        $("#btn-lihat").attr("data-id", '');
 
                     },
                     error: function(xhr, status, error) {
@@ -829,49 +833,6 @@ if (!isset($_SESSION['username'])) {
                     toast.onmouseleave = Swal.resumeTimer;
                 },
             });
-
-
-            // function tbl_pm() {
-            //     $("#tbl_pm").DataTable({
-            //         lengthChange: true,
-            //         processing: true,
-            //         ajax: {
-            //             url: "list-siswa.php",
-            //         },
-            //         columns: [{
-            //                 data: null,
-            //                 sortable: false,
-            //                 render: function (data, type, row, meta) {
-            //                     return meta.row + meta.settings._iDisplayStart + 1;
-            //                 },
-            //             },
-            //             {
-            //                 data: "nis",
-            //                 name: "nis",
-            //             },
-            //             {
-            //                 data: "nama_siswa",
-            //                 name: "nama_siswa",
-            //             },
-            //             {
-            //                 data: "jenis_kelamin",
-            //                 name: "jenis_kelamin",
-            //             },
-            //             {
-            //                 data: "kelas",
-            //                 name: "kelas",
-            //             },
-            //             {
-            //                 data: "tahun_ajaran",
-            //                 name: "tahun_ajaran",
-            //             },
-            //             {
-            //                 data: "aksi",
-            //                 name: "aksi",
-            //             },
-            //         ],
-            //     });
-            // }
         </script>
 </body>
 
