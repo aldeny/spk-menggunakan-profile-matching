@@ -10,7 +10,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST["password"];
 
     // Prepare statement
-    $stmt = mysqli_prepare($konek, "SELECT * FROM user WHERE username=? AND password=?");
+    $stmt = mysqli_prepare($konek, "SELECT * 
+    FROM user AS u
+    JOIN role AS r ON r.id = u.role_id
+    WHERE username=? AND password=?");
 
     // Check if the prepare statement succeeded
     if ($stmt) {
@@ -30,6 +33,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["username"] = $username;
             $_SESSION["name"] = $user["nama"];
             $_SESSION["id"] = $user["id"];
+            $_SESSION["role"] = $user["role_id"];
+
+            // Check if user is admin
+            if ($user["role_id"] == 1) {
+                // Redirect to kepala sekolah dashboard
+                header("Location: ../dashboard-kepsek.php");
+                exit(); // exit script after redirection
+            }
             // Redirect to dashboard
             header("Location: ../dashboard.php");
             exit(); // exit script after redirection

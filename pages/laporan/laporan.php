@@ -49,7 +49,7 @@ if (!isset($_SESSION['username'])) {
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../../index.php">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" <?php if ($_SESSION['role'] == 1) { ?> href="../dashboard-kepsek.php" <?php } else { ?> href="../dashboard.php" <?php } ?>>
                 <div class="sidebar-brand-text mx-3">SPK</div>
             </a>
 
@@ -58,51 +58,58 @@ if (!isset($_SESSION['username'])) {
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="../dashboard.php">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                <a class="nav-link" <?php if ($_SESSION['role'] == 1) { ?> href="../dashboard-kepsek.php" <?php } else { ?> href="../dashboard.php" <?php } ?>> <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider" />
+            <?php
+            if ($_SESSION['role'] == 2) {
+                echo '
+                    <hr class="sidebar-divider" />
+        
+                    <div class="sidebar-heading">Data Master</div>
+        
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#master" aria-expanded="true" aria-controls="master">
+                            <i class="fas fa-fw fa-cog"></i>
+                            <span>Data Master</span>
+                        </a>
+                        <div id="master" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Settings Data Master:</h6>
+                                <a class="collapse-item" href="../kriteria/kriteria.php">Kriteria</a>
+                                <a class="collapse-item" href="../sub-kriteria/sub-kriteria.php">Sub Kriteria</a>
+                                <a class="collapse-item" href="../target/target.php">Nilai Target</a>
+                                <!-- <a class="collapse-item" href="../gap/gap.php">Nilai GAP</a> -->
+                            </div>
+                        </div>
+                    </li>
 
-            <!-- Heading -->
-            <div class="sidebar-heading">Data Master</div>
+                    <hr class="sidebar-divider" />
 
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#master" aria-expanded="true" aria-controls="master">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Data Master</span>
-                </a>
-                <div id="master" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Settings Data Master:</h6>
-                        <a class="collapse-item" href="../kriteria/kriteria.php">Kriteria</a>
-                        <a class="collapse-item" href="../sub-kriteria/sub-kriteria.php">Sub Kriteria</a>
-                        <a class="collapse-item" href="../target/target.php">Nilai Target</a>
-                        <!-- <a class="collapse-item" href="../gap/gap.php">Nilai GAP</a> -->
-                    </div>
-                </div>
-            </li>
+                <div class="sidebar-heading">Pages</div>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider" />
+                <li class="nav-item">
+                    <a class="nav-link" href="../siswa/siswa.php">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>Data Siswa</span></a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="../profile-matching/profile-matching.php">
+                        <i class="fas fa-fw fa-certificate"></i>
+                        <span>Profile Matching</span></a>
+                </li>
+                    ';
+            } else {
+                echo '
+                <hr class="sidebar-divider" />
 
-            <!-- Heading -->
-            <div class="sidebar-heading">Pages</div>
+                <div class="sidebar-heading">Pages</div>
+                ';
+            }
+            ?>
 
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="../siswa/siswa.php">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Data Siswa</span></a>
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link" href="../profile-matching/profile-matching.php">
-                    <i class="fas fa-fw fa-certificate"></i>
-                    <span>Profile Matching</span></a>
-            </li>
+
             <li class="nav-item active">
                 <a class="nav-link" href="#">
                     <i class="fas fa-fw fa-chart-bar"></i>
@@ -169,7 +176,7 @@ if (!isset($_SESSION['username'])) {
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">Data Profile Matching</h1>
                         <div class="d-sm-flex align-items-center justify-content-between ">
-                            <a href="../exports/export-pm.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate
+                            <a href="../exports/export-pm.php" target="_blank" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate
                                 Report</a>
                         </div>
                     </div>
