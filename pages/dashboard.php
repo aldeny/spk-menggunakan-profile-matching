@@ -22,7 +22,9 @@ if (!isset($_SESSION['username'])) {
 
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet" />
 
     <!-- Custom styles for this template-->
     <link href="../css/sb-admin-2.min.css" rel="stylesheet" />
@@ -62,7 +64,8 @@ if (!isset($_SESSION['username'])) {
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#master" aria-expanded="true" aria-controls="master">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#master" aria-expanded="true"
+                    aria-controls="master">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Data Master</span>
                 </a>
@@ -139,12 +142,15 @@ if (!isset($_SESSION['username'])) {
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small text-capitalize"><?php echo $_SESSION['username']; ?></span>
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span
+                                    class="mr-2 d-none d-lg-inline text-gray-600 small text-capitalize"><?php echo $_SESSION['username']; ?></span>
                                 <img class="img-profile rounded-circle" src="../img/undraw_profile.svg" />
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
@@ -272,6 +278,47 @@ if (!isset($_SESSION['username'])) {
                                 </div>
                             </div>
                         </div>
+
+                        <?php
+                        include '../config/koneksi.php';
+
+                        $sql = "SELECT 
+                                        COUNT(*) AS jumlah_ips
+                                    FROM 
+                                        `profile_matching` AS pm
+                                    WHERE 
+                                        pm.n_total_ipa = pm.n_total_ips;
+                                    ";
+
+                        $result = mysqli_query($konek, $sql);
+
+                        $total = mysqli_fetch_assoc($result);
+                        ?>
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-danger shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                                                Total Siswa Nilai Sama
+                                            </div>
+                                            <div class="h2 mb-4 font-weight-bold text-gray-800">
+                                                <?php echo $total['jumlah_ips'] ?>
+                                            </div>
+                                            <div class="text-danger">
+                                                <small><strong>Nb:</strong> Harapa Ditinjau Kembali</small>
+                                            </div>
+                                            <!-- <a href="#" class="btn btn-sm btn-warning">Cek Detail</a> -->
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-question-circle fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="card shadow mb-4">
@@ -335,7 +382,8 @@ if (!isset($_SESSION['username'])) {
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-danger">
@@ -351,7 +399,7 @@ if (!isset($_SESSION['username'])) {
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">
                         Cancel
                     </button>
-                    <a class="btn btn-danger" href="../auth/logout.php">Logout <i class="fas fa-sign-out-alt"></i></a>
+                    <a class="btn btn-danger" href="auth/logout.php">Logout <i class="fas fa-sign-out-alt"></i></a>
                 </div>
             </div>
         </div>
@@ -382,7 +430,7 @@ if (!isset($_SESSION['username'])) {
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.8/dist/sweetalert2.all.min.js"></script>
 
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             tbl_pm_siswa();
         })
 
@@ -396,7 +444,7 @@ if (!isset($_SESSION['username'])) {
                 columns: [{
                         data: null,
                         sortable: false,
-                        render: function(data, type, row, meta) {
+                        render: function (data, type, row, meta) {
                             return meta.row + meta.settings._iDisplayStart + 1;
                         },
                     },
